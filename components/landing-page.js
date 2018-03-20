@@ -11,22 +11,23 @@ export default class LandingPage extends React.Component {
       days: 1,
       priceValue: 1,
       priceLimit: 3000,
-      adults: 1
+      adults: 1,
+      destination: ''
     };
   }
 
   storeValues(priceValue) {
     let priceLimit = Math.floor(priceValue.toFixed(2) * 3000);
-    this.setState({priceValue, priceLimit})
+    this.setState({priceValue, priceLimit});
   }
 
-  visitHawaii() {
+  visitLocation(destination) {
     let dividedDate = this.state.date.split('/');
     let day = dividedDate[1];
     let month = dividedDate[0];
     let year = dividedDate[2];
     
-    fetch(`https://api.skypicker.com/flights?flyFrom=${this.state.code}&to=HNL&dateFrom=${day}%2F${month}%2F${year}&dateTo=${day}%2F${month}%2F${year}&daysInDestinationFrom=${this.state.days}&daysInDestinationTo=${this.state.days}&typeFlight=round&passengers=${this.state.adults}&partner=picky&partner_market=us&curr=USD&locale=en-US&stopoverto=00%3A00&maxstopovers=0&limit=1&sort=price&asc=1`, 
+    fetch(`https://api.skypicker.com/flights?flyFrom=${this.state.code}&to=${destination}&dateFrom=${day}%2F${month}%2F${year}&dateTo=${day}%2F${month}%2F${year}&daysInDestinationFrom=${this.state.days}&daysInDestinationTo=${this.state.days}&typeFlight=round&passengers=${this.state.adults}&partner=picky&partner_market=us&curr=USD&locale=en-US&stopoverto=00%3A00&maxstopovers=0&limit=1&sort=price&asc=1`, 
 		{
   		method: 'GET',
   		headers: {
@@ -98,7 +99,7 @@ export default class LandingPage extends React.Component {
         </View>
 
         <Button
-          onPress={() => this.visitHawaii()}
+          onPress={() => this.visitLocation('HNL')}
           title="Visit Hawaii"
           color="#841584"
         />
