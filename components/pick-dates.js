@@ -50,6 +50,3 @@ export class PickDates extends React.Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-});
