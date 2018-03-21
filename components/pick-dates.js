@@ -3,6 +3,7 @@ import { View, StyleSheet, TextInput } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CalendarPicker from 'react-native-calendar-picker';
+import { submitTravelDates } from '../actions/flight';
 
 export class PickDates extends React.Component {
     onDateChange(date, type) {
@@ -17,7 +18,22 @@ export class PickDates extends React.Component {
             selectedEndDate: null,
           });
         }
-      }
+    }
+
+    submitTravelDates() {
+        if (this.props.startDate !== null && this.props.endDate !== null) {
+            this.props.dispatch(submitTravelDates())
+        } else {
+            Alert.alert(
+                'Not so fast...',
+                'We need to know the start and end dates for your adventure.',
+                [
+                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+            )
+        }
+    }
     
     render() {
         const minDate = new Date(); // Today
@@ -42,7 +58,7 @@ export class PickDates extends React.Component {
                     color='white'
                     />
                 }
-                onPress={() => console.log('Start')}
+                onPress={() => this.submitTravelDates()}
                 title='Start Splorin'
             />
 
@@ -50,3 +66,10 @@ export class PickDates extends React.Component {
         )
     }
 }
+
+const mapStateToProps = state => ({
+    startDate: state.startDate,
+    endDate: state.endDate
+})
+
+export default connect(mapStateToProps)(StartLocation);

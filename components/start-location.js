@@ -7,6 +7,21 @@ import { storeDepartureAirport, submitDepartureAirport } from '../actions/flight
 
 export class StartLocation extends React.Component {
 
+  submitDepartureAirport() {
+    if (this.props.code !== null) {
+        this.props.dispatch(submitDepartureAirport())
+    } else {
+        Alert.alert(
+            'Not so fast...',
+            'We need to know where you are starting this adventure.',
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            { cancelable: false }
+        )
+    }
+}
+
   render() {
     return (
       <View>
@@ -26,7 +41,7 @@ export class StartLocation extends React.Component {
                     color='white'
                     />
                 }
-                onPress={() => this.props.dispatch(submitDepartureAirport())}
+                onPress={() => this.submitDepartureAirport()}
                 title='When Do You Want to Fly?'
             />
 
