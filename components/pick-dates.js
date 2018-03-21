@@ -25,7 +25,6 @@ export class PickDates extends React.Component {
         return (
           <View>
             <CalendarPicker
-              startFromMonday={true}
               allowRangeSelection={true}
               minDate={minDate}
               maxDate={maxDate}

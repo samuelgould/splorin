@@ -5,7 +5,7 @@ import {
 
 const initialState = { 
     startLocationView: true,
-    calendarView: false,
+    pickDatesView: false,
     code: '',
     date: '',
     days: 1,
@@ -20,7 +20,7 @@ export const reducer = (state = initialState, action) => {
 	} else if (action.type === SUBMIT_DEPARTURE_AIRPORT) {
         return Object.assign({}, state, {
             startLocationView: false,
-            calendarView: true
+            pickDatesView: true
         })
     }
 	return state;
