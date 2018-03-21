@@ -2,7 +2,8 @@ import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import StartLocation from './start-location';
-import { PickDates } from './pick-dates';
+import PickDates from './pick-dates';
+import DestinationImages from './destination-images';
 
 export class Dashboard extends React.Component {
 
