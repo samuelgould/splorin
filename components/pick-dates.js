@@ -7,7 +7,8 @@ import CalendarPicker from 'react-native-calendar-picker';
 export class PickDates extends React.Component {
     onDateChange(date, type) {
         if (type === 'END_DATE') {
-          console.log({
+            console.log('End date is ', date);
+            console.log({
             selectedEndDate: date,
           });
         } else {

@@ -12,7 +12,7 @@ export class Dashboard extends React.Component {
   //   let month = dividedDate[0];
   //   let year = dividedDate[2];
     
-  //   fetch(`https://api.skypicker.com/flights?flyFrom=${this.state.code}&to=${destination}&dateFrom=${day}%2F${month}%2F${year}&dateTo=${day}%2F${month}%2F${year}&daysInDestinationFrom=${this.state.days}&daysInDestinationTo=${this.state.days}&typeFlight=round&partner=picky&partner_market=us&curr=USD&locale=en-US&stopoverto=00%3A00&maxstopovers=0&limit=1&sort=price&asc=1`, 
+  //   fetch(`https://api.skypicker.com/flights?flyFrom=${this.state.code}&to=${destination}&dateFrom=${startDay}%2F${startMonth}%2F${startYear}&dateTo=${startDay}%2F${startMonth}%2F${startYear}&daysInDestinationFrom=${this.state.days}&returnFrom={endDay}%2F${endMonth}%2F${endYear}&returnTo={endDay}%2F${endMonth}%2F${endYear}&typeFlight=round&partner=picky&partner_market=us&curr=USD&locale=en-US&stopoverto=00%3A00&maxstopovers=0&limit=1&sort=price&asc=1`, 
 	// 	{
   // 		method: 'GET',
   // 		headers: {
