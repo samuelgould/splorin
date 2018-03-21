@@ -7,9 +7,9 @@ import {
 } from '../actions/flight';
 
 const initialState = { 
-    startLocationView: true,
+    startLocationView: false,
     pickDatesView: false,
-    destinationImagesView: false,
+    destinationImagesView: true,
     code: null,
     startDate: null,
     endDate: null,

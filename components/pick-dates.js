@@ -14,21 +14,6 @@ export class PickDates extends React.Component {
             this.props.dispatch(storeStartDate(date));
         }
     }
-    
-    // onDateChange(date, type) {
-    //     if (type === 'END_DATE') {
-    //         return this.props.dispatch(storeEndDate(date));
-    //         console.log({
-    //         selectedEndDate: date,
-    //       });
-    //     } else {
-    //         this.props.dispatch(storeStartDate(date));
-    //         console.log({
-    //             selectedStartDate: date,
-    //             selectedEndDate: null,
-    //         });
-    //     }
-    // }
 
     submitTravelDates() {
         if (this.props.startDate !== null && this.props.endDate !== null) {
