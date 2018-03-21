@@ -1,24 +1,35 @@
 import React from 'react';
-import { View, StyleSheet, TextInput } from 'react-native';
+import { View, StyleSheet, TextInput, Alert } from 'react-native';
+import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CalendarPicker from 'react-native-calendar-picker';
-import { submitTravelDates } from '../actions/flight';
+import { submitTravelDates, storeStartDate, storeEndDate } from '../actions/flight';
 
 export class PickDates extends React.Component {
-    onDateChange(date, type) {
-        if (type === 'END_DATE') {
-            console.log('End date is ', date);
-            console.log({
-            selectedEndDate: date,
-          });
+    onDateChange(date) {
+        console.log(date);
+        if (this.props.startDate !== null && this.props.endDate === null) {
+            this.props.dispatch(storeEndDate(date));
         } else {
-          console.log({
-            selectedStartDate: date,
-            selectedEndDate: null,
-          });
+            this.props.dispatch(storeStartDate(date));
         }
     }
+    
+    // onDateChange(date, type) {
+    //     if (type === 'END_DATE') {
+    //         return this.props.dispatch(storeEndDate(date));
+    //         console.log({
+    //         selectedEndDate: date,
+    //       });
+    //     } else {
+    //         this.props.dispatch(storeStartDate(date));
+    //         console.log({
+    //             selectedStartDate: date,
+    //             selectedEndDate: null,
+    //         });
+    //     }
+    // }
 
     submitTravelDates() {
         if (this.props.startDate !== null && this.props.endDate !== null) {
@@ -47,7 +58,7 @@ export class PickDates extends React.Component {
               maxDate={maxDate}
               todayBackgroundColor="#f2e6ff"
               selectedDayColor="#7300e6"
-              onDateChange={this.onDateChange}
+              onDateChange={date => this.onDateChange(date)}
             />
 
             <Button
@@ -72,4 +83,4 @@ const mapStateToProps = state => ({
     endDate: state.endDate
 })
 
-export default connect(mapStateToProps)(StartLocation);
+export default connect(mapStateToProps)(PickDates);

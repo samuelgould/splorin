@@ -34,6 +34,7 @@ export class Dashboard extends React.Component {
   render() {
     let startLocation;
     let pickDates;
+    let destinationImages;
     
     if (this.props.startLocation) {
       startLocation = (
@@ -46,11 +47,18 @@ export class Dashboard extends React.Component {
         <PickDates />
       )
     }
+
+    if (this.props.destinationImages) {
+      destinationImages = (
+        <DestinationImages />
+      )
+    }
       
     return (
       <View>
         {startLocation}
         {pickDates}
+        {destinationImages}
       </View>
     )
   }
@@ -58,7 +66,8 @@ export class Dashboard extends React.Component {
 
 const mapStateToProps = state => ({
   startLocation: state.startLocationView,
-  pickDates: state.pickDatesView
+  pickDates: state.pickDatesView,
+  destinationImages: state.destinationImagesView
 })
 
 export default connect(mapStateToProps)(Dashboard);
