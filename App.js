@@ -1,14 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
-import LandingPage from './components/landing-page.js';
+import store from './store';
+import LandingPage from './components/landing-page';
+import StartLocation from './components/start-location';
 
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <LandingPage />
+          <StartLocation />
+          {/* <LandingPage /> */}
         </View>
       </Provider>
     );

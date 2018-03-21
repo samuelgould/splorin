@@ -1,7 +1,7 @@
 import { 
     STORE_DEPARTURE_AIRPORT,
     SUBMIT_DEPARTURE_AIRPORT
-} from '../actions/flights';
+} from '../actions/flight';
 
 const initialState = { 
     startLocationView: true,
