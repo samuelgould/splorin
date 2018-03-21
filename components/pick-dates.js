@@ -8,8 +8,7 @@ import { submitTravelDates, storeStartDate, storeEndDate } from '../actions/flig
 
 export class PickDates extends React.Component {
     onDateChange(date) {
-        console.log(date);
-        if (this.props.startDate !== null && this.props.endDate === null) {
+        if (this.props.startDate !== null && this.props.endDate === null && this.props.startDate <= date) {
             this.props.dispatch(storeEndDate(date));
         } else {
             this.props.dispatch(storeStartDate(date));
