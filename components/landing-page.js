@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text, TextInput, Picker, Button } from 'react-native';
 import { Slider } from 'react-native-elements';
+import { PickDates } from './pick-dates';
 
 export default class LandingPage extends React.Component {
   constructor(props) {
@@ -16,10 +17,10 @@ export default class LandingPage extends React.Component {
     };
   }
 
-  storeValues(priceValue) {
-    let priceLimit = Math.floor(priceValue.toFixed(2) * 3000);
-    this.setState({priceValue, priceLimit});
-  }
+  // storeValues(priceValue) {
+  //   let priceLimit = Math.floor(priceValue.toFixed(2) * 3000);
+  //   this.setState({priceValue, priceLimit});
+  // }
 
   visitLocation(destination) {
     let dividedDate = this.state.date.split('/');
@@ -56,12 +57,7 @@ export default class LandingPage extends React.Component {
           value={this.state.code}
         />
 
-        <TextInput
-          style={styles.textInput}
-          onChangeText={date => this.setState({date})}
-          placeholder='Departure Date (MM/DD/YYYY)'
-          value={this.state.date}
-        />
+        <PickDates />
 
         <View style={styles.picker}>  
           <Text>Length of Trip: </Text>
@@ -77,26 +73,12 @@ export default class LandingPage extends React.Component {
           </Picker>
         </View>
 
-        <View style={styles.picker}>  
-          <Text>Adults: </Text>
-          <Picker
-            selectedValue={this.state.adults}
-            onValueChange={(itemValue, itemIndex) => this.setState({adults: itemValue})}>
-            <Picker.Item label="1" value={1} />
-            <Picker.Item label="2" value={2} />
-            <Picker.Item label="3" value={3} />
-            <Picker.Item label="4" value={4} />
-            <Picker.Item label="5" value={5} />
-            <Picker.Item label="6" value={6} />
-          </Picker>
-        </View>
-
-        <View style={styles.slider}>
+        {/* <View style={styles.slider}>
           <Slider
             value={this.state.priceValue}
             onValueChange={priceValue => this.storeValues(priceValue)} />
           <Text>Price Limit: {this.state.priceLimit}</Text>
-        </View>
+        </View> */}
 
         <Button
           onPress={() => this.visitLocation('HNL')}
