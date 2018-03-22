@@ -7,7 +7,9 @@ import {
     SEARCH_FLIGHT_REQUEST,
     SEARCH_FLIGHT_SUCCESS,
     SEARCH_FLIGHT_ERROR,
-    DISPLAY_NEXT_DESTINATION_IMAGE
+    DISPLAY_NEXT_DESTINATION_IMAGE,
+    TOGGLE_MORE_INFO,
+    RESTART_SEARCH
 } from '../actions/flight';
 
 const initialState = { 
@@ -19,16 +21,17 @@ const initialState = {
     startDate: null,
     endDate: null,
     destination: null,
+    moreInfo: false,
     loading: false,
     error: null,
     flight: null,
     destinationImages: [
         {
-            source: {uri: 'https://i.imgur.com/VvTCt8m.png'},
+            source: {uri: 'https://i.imgur.com/sMeQDtx.jpg'},
             airport: 'PUQ',
-            description: 'Duel mountain peaks in the background with a winding road next to a lake',
+            description: 'Duel mountain peaks in the background surrounding a bright blue lake during a sunset',
             location: 'Patagonia, Chile',
-            attraction: 'Torres Del Paine National Park',
+            attraction: 'Torres Del Paine',
             why: 'Explore breathe-taking views that inspired your favorite outdoor brand.'
         },
         {
@@ -43,7 +46,7 @@ const initialState = {
             source: {uri: 'https://i.imgur.com/SAT57Cy.jpg'},
             airport: 'YYC',
             description: 'The bright blue water of Lake Louise reflecting the surrounding snowcapped mountains',
-            location: 'Banff National Park',
+            location: 'Banff National Park, Canada',
             attraction: 'Lake Louise',
             why: 'Enjoy the celestial blue waters of Lake Louise in the heart of the Canadian Rockies with glaciers only a short hike away.'
         },
@@ -118,7 +121,8 @@ export const reducer = (state = initialState, action) => {
         return Object.assign({}, state, {
             flightInformationView: false,
             destinationImagesView: true,
-            destinationImages: state.destinationImages.slice(1)
+            moreInfo: false,
+            destinationImages: [...state.destinationImages.slice(1), state.destinationImages[0]]
         })
     } else if (action.type === SEARCH_FLIGHT_REQUEST) {
 		return Object.assign({}, state, {
@@ -136,6 +140,15 @@ export const reducer = (state = initialState, action) => {
 		return Object.assign({}, state, {
 			loading: false,
 			error: action.error
+        })
+    } else if (action.type === TOGGLE_MORE_INFO) {
+		return Object.assign({}, state, {
+			moreInfo: !state.moreInfo
+        })
+    } else if (action.type === RESTART_SEARCH) {
+        return Object.assign({}, initialState, {
+            code: state.code,
+            destinationImages: [...state.destinationImages.slice(1), state.destinationImages[0]]
         })
     }
 	return state;

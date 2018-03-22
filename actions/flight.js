@@ -64,9 +64,19 @@ export const searchFlight = (departure, destination, startDay, startMonth, start
 		return res.json()
 	})
 	.then(results => {
-        dispatch(searchFlightSuccess(results.data[0]));
-    })
-    .catch(err => 
-        dispatch(searchFlightError(err))
-    )
+    dispatch(searchFlightSuccess(results.data[0]));
+  })
+  .catch(err => 
+    dispatch(searchFlightError(err))
+  )
 }
+
+export const TOGGLE_MORE_INFO = 'TOGGLE_MORE_INFO';
+export const toggleMoreInfo = () => ({
+  type: TOGGLE_MORE_INFO
+});
+
+export const RESTART_SEARCH = 'RESTART_SEARCH';
+export const restartSearch = () => ({
+  type: RESTART_SEARCH
+});

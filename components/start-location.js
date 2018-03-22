@@ -36,6 +36,7 @@ export class StartLocation extends React.Component {
           title='Continue'
           backgroundColor='#33CC99'
           fontWeight='bold'
+          borderRadius={10}
         />
 
       </View>
@@ -48,8 +49,9 @@ const styles = StyleSheet.create({
     height: 40, 
     borderColor: 'gray', 
     borderWidth: 1, 
-    width: 200, 
-    padding: 10
+    width: 300, 
+    padding: 10,
+    margin: 15
   }
 });
 

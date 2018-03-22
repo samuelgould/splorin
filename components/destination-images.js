@@ -1,14 +1,33 @@
 import React from 'react';
-import { View, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements';
-import { searchFlight, displayNextDestinationImage } from '../actions/flight';
+import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
+import { searchFlight, displayNextDestinationImage, restartSearch, toggleMoreInfo } from '../actions/flight';
 
 export class DestinationImages extends React.Component {
-    render() {
-        let { code, startDate, endDate, destinationImages } = this.props;
+    onSwipe(gestureName, code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear) {
+        const { SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT } = swipeDirections;
+        switch (gestureName) {
+            case SWIPE_UP:
+                this.props.dispatch(toggleMoreInfo());
+                break;
+            case SWIPE_DOWN:
+                this.props.dispatch(restartSearch());
+                break;
+            case SWIPE_LEFT:
+                this.props.dispatch(displayNextDestinationImage());
+                break;
+            case SWIPE_RIGHT:
+                this.props.dispatch(searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear));
+                break;
+        }
+    }
 
-        const { source, description, airport } = destinationImages[0];
+    render() {
+        let { code, startDate, endDate, destinationImages, moreInfo } = this.props;
+
+        const { source, description, airport, attraction, location, why } = destinationImages[0];
         
         startDate = new Date(startDate);
         startDay = startDate.getDate();
@@ -20,40 +39,117 @@ export class DestinationImages extends React.Component {
         endMonth = endDate.getMonth() + 1;
         endYear = endDate.getFullYear();
 
-        return (
-            <ImageBackground style={styles.image} source={source} alt={description}>   
-                <View style={styles.iconContainer}>
-                    <Icon 
-                        reverse
-                        name='flight-takeoff'
-                        color='#33CC99'
-                        onPress={() => this.props.dispatch(searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear))}
-                    />
-                    <Icon 
-                        reverse
-                        name='delete'
-                        color='#8D4E85'
-                        onPress={() => this.props.dispatch(displayNextDestinationImage())}
-                    />
+        const config = {
+            velocityThreshold: 0.3,
+            directionalOffsetThreshold: 80
+        };
+
+        let info;
+
+        if (moreInfo) {
+            info = (
+                <View style={styles.textBox}>
+                    <Text style={styles.header}>{attraction}</Text>
+                    <Text style={styles.subHeader}>in {location}</Text>
+                    <Text style={styles.text}>{why}</Text>
                 </View>
-            </ImageBackground>
             )
+        };
+
+        return (
+            <GestureRecognizer
+                onSwipe={direction => this.onSwipe(direction, code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
+                config={config}
+                style={{
+                    flex: 1,
+                }}
+            >
+                <ImageBackground style={styles.image} source={source} alt={description}>   
+                    <View style={styles.contentContainer}>
+                        <View style={styles.iconContainer}>
+                            <Icon
+                                reverse
+                                name='info'
+                                type='entypo'
+                                color='#33CC99'
+                                onPress={() => this.props.dispatch(toggleMoreInfo())}
+                            />
+                            <Icon
+                                reverse
+                                name='home'
+                                color='#8D4E85'
+                                onPress={() => this.props.dispatch(restartSearch())}
+                            />
+                        </View>
+                        {info}
+                        <View style={styles.iconContainer}>
+                            <Icon 
+                                reverse
+                                name='flight-takeoff'
+                                color='#33CC99'
+                                onPress={() => this.props.dispatch(searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear))}
+                            />
+                            <Icon 
+                                reverse
+                                name='delete'
+                                color='#8D4E85'
+                                onPress={() => this.props.dispatch(displayNextDestinationImage())}
+                            />
+                        </View>
+                    </View>
+                </ImageBackground>
+            </GestureRecognizer>
+        )
     }
 }
 
 const styles = StyleSheet.create({
     image: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
         width: 400
     },
-    iconContainer: {
+    contentContainer: {
         flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        width: 325
+    },
+    iconContainer: {
         flexDirection: 'row-reverse',
-        justifyContent: 'space-around',
-        width: '100%',
-        paddingTop: 450
+        justifyContent: 'space-between'
+    },
+    header: {
+        color: '#33CC99',
+        fontWeight: 'bold',
+        fontSize: 24,
+        textAlign: 'center'
+    },
+    subHeader: {
+        color: '#33CC99',
+        fontWeight: 'bold',
+        fontSize: 18,
+        textAlign: 'center'
+    },
+    text: {
+        color: '#8D4E85',
+        fontWeight: 'bold',
+        fontSize: 18,
+        margin: 10
+    },
+    textBox: {
+        width: 300,
+        backgroundColor: 'white',
+        margin: 15,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#ddd',
+        borderBottomWidth: 0,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 1
     }
   });
   
@@ -62,7 +158,8 @@ const mapStateToProps = state => ({
     code: state.code,
     startDate: state.startDate,
     endDate: state.endDate,
-    destinationImages: state.destinationImages    
+    destinationImages: state.destinationImages,
+    moreInfo: state.moreInfo    
 })
 
 export default connect(mapStateToProps)(DestinationImages);
