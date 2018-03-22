@@ -7,11 +7,11 @@ import { searchFlight, displayNextDestinationImage, restartSearch, toggleMoreInf
 
 export class DestinationImages extends React.Component {
     onSwipe(gestureName, code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear) {
-        const { SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT } = swipeDirections;
+        const { SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT } = swipeDirections;
         switch (gestureName) {
-            // case SWIPE_UP:
-                
-            //     break;
+            case SWIPE_UP:
+                this.props.dispatch(toggleMoreInfo());
+                break;
             case SWIPE_DOWN:
                 this.props.dispatch(restartSearch());
                 break;
@@ -65,35 +65,37 @@ export class DestinationImages extends React.Component {
                 }}
             >
                 <ImageBackground style={styles.image} source={source} alt={description}>   
-                    <View style={styles.iconContainer}>
-                        <Icon
-                            reverse
-                            name='info'
-                            type='entypo'
-                            color='#33CC99'
-                            onPress={() => this.props.dispatch(toggleMoreInfo())}
-                        />
-                        <Icon
-                            reverse
-                            name='home'
-                            color='#8D4E85'
-                            onPress={() => this.props.dispatch(restartSearch())}
-                        />
-                    </View>
-                    {info}
-                    <View style={styles.iconContainer}>
-                        <Icon 
-                            reverse
-                            name='flight-takeoff'
-                            color='#33CC99'
-                            onPress={() => this.props.dispatch(searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear))}
-                        />
-                        <Icon 
-                            reverse
-                            name='delete'
-                            color='#8D4E85'
-                            onPress={() => this.props.dispatch(displayNextDestinationImage())}
-                        />
+                    <View style={styles.contentContainer}>
+                        <View style={styles.iconContainer}>
+                            <Icon
+                                reverse
+                                name='info'
+                                type='entypo'
+                                color='#33CC99'
+                                onPress={() => this.props.dispatch(toggleMoreInfo())}
+                            />
+                            <Icon
+                                reverse
+                                name='home'
+                                color='#8D4E85'
+                                onPress={() => this.props.dispatch(restartSearch())}
+                            />
+                        </View>
+                        {info}
+                        <View style={styles.iconContainer}>
+                            <Icon 
+                                reverse
+                                name='flight-takeoff'
+                                color='#33CC99'
+                                onPress={() => this.props.dispatch(searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear))}
+                            />
+                            <Icon 
+                                reverse
+                                name='delete'
+                                color='#8D4E85'
+                                onPress={() => this.props.dispatch(displayNextDestinationImage())}
+                            />
+                        </View>
                     </View>
                 </ImageBackground>
             </GestureRecognizer>
@@ -104,16 +106,18 @@ export class DestinationImages extends React.Component {
 const styles = StyleSheet.create({
     image: {
         flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
         alignItems: 'center',
         width: 400
     },
-    iconContainer: {
+    contentContainer: {
         flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        width: 325
+    },
+    iconContainer: {
         flexDirection: 'row-reverse',
-        justifyContent: 'space-around',
-        width: '100%',
+        justifyContent: 'space-between'
     },
     header: {
         color: '#33CC99',
