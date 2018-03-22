@@ -2,9 +2,22 @@ import React from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements';
+import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
 import { searchFlight, displayNextDestinationImage } from '../actions/flight';
 
 export class DestinationImages extends React.Component {
+    onSwipe(gestureName, code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear) {
+        const { SWIPE_LEFT, SWIPE_RIGHT } = swipeDirections;
+        switch (gestureName) {
+          case SWIPE_LEFT:
+            this.props.dispatch(displayNextDestinationImage())
+            break;
+          case SWIPE_RIGHT:
+            this.props.dispatch(searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear));
+            break;
+        }
+    }
+
     render() {
         let { code, startDate, endDate, destinationImages } = this.props;
 
@@ -20,24 +33,37 @@ export class DestinationImages extends React.Component {
         endMonth = endDate.getMonth() + 1;
         endYear = endDate.getFullYear();
 
+        const config = {
+            velocityThreshold: 0.3,
+            directionalOffsetThreshold: 80
+        };
+
         return (
-            <ImageBackground style={styles.image} source={source} alt={description}>   
-                <View style={styles.iconContainer}>
-                    <Icon 
-                        reverse
-                        name='flight-takeoff'
-                        color='#33CC99'
-                        onPress={() => this.props.dispatch(searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear))}
-                    />
-                    <Icon 
-                        reverse
-                        name='delete'
-                        color='#8D4E85'
-                        onPress={() => this.props.dispatch(displayNextDestinationImage())}
-                    />
-                </View>
-            </ImageBackground>
-            )
+            <GestureRecognizer
+                onSwipe={direction => this.onSwipe(direction, code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
+                config={config}
+                style={{
+                    flex: 1,
+                }}
+            >
+                <ImageBackground style={styles.image} source={source} alt={description}>   
+                    <View style={styles.iconContainer}>
+                        <Icon 
+                            reverse
+                            name='flight-takeoff'
+                            color='#33CC99'
+                            onPress={() => this.props.dispatch(searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear))}
+                        />
+                        <Icon 
+                            reverse
+                            name='delete'
+                            color='#8D4E85'
+                            onPress={() => this.props.dispatch(displayNextDestinationImage())}
+                        />
+                    </View>
+                </ImageBackground>
+            </GestureRecognizer>
+        )
     }
 }
 
