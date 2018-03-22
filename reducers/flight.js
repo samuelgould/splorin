@@ -43,8 +43,8 @@ const initialState = {
             source: {uri: 'https://i.imgur.com/SAT57Cy.jpg'},
             airport: 'YYC',
             description: 'The bright blue water of Lake Louise reflecting the surrounding snowcapped mountains',
-            location: 'Banff, Canada',
-            attraction: 'Banff National Park',
+            location: 'Banff National Park',
+            attraction: 'Lake Louise',
             why: 'Enjoy the celestial blue waters of Lake Louise in the heart of the Canadian Rockies with glaciers only a short hike away.'
         },
         {
@@ -54,6 +54,38 @@ const initialState = {
             location: 'Cambodia',
             attraction: 'Ta Prohm',
             why: 'Revel in the remains of the Khmer Empire, exploring the ancient temples of Ankgor Wat, Ta Prohm, and Bayon.'
+        },
+        {
+            source: {uri: 'https://i.imgur.com/odnVEcd.jpg'},
+            airport: 'SFO',
+            description: 'The view of the Golden Gate Bridge from Baker Beach during the sunrise',
+            location: 'San Francisco, CA',
+            attraction: 'Golden Gate Bridge',
+            why: 'Get to know the hills of San Francisco and don\'t miss this stunning view of the Golden Gate Bridge from Baker Beach.'
+        },
+        {
+            source: {uri: 'https://i.imgur.com/K15QDrm.jpg'},
+            airport: 'HNL',
+            description: 'Sunset on the North Shore of Oahu, HI',
+            location: 'Oahu, HI',
+            attraction: 'North Shore Beaches',
+            why: 'Relax on the beach. Explore the volcanoes. Just don\'t stay inside.'
+        },
+        {
+            source: {uri: 'https://i.imgur.com/F3nmZ6C.jpg'},
+            airport: 'DEN',
+            description: 'A waterfall rushing through the mountainous terrain of the Rocky Mountains',
+            location: 'Rocky Mountain National Park',
+            attraction: 'Alberta Falls',
+            why: 'Get out on the continental divide and find hidden gems scattered throughout the Rocky Mountain National Park.'
+        },
+        {
+            source: {uri: 'https://i.imgur.com/1S60G9Y.jpg'},
+            airport: 'DXB',
+            description: 'The Burj Khalifa with fountains in the foreground with a sunset in the background',
+            location: 'Dubai',
+            attraction: 'Burj Khalifa',
+            why: 'Visit the Burj Khalifa, the tallest building in the world, in the midst of this rapidly gsrowing modern city.'
         }
     ]
   }
