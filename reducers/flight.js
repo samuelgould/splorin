@@ -25,9 +25,9 @@ const initialState = {
     flight: null,
     destinationImages: [
         {
-            source: {uri: 'https://i.imgur.com/VvTCt8m.png'},
+            source: {uri: 'https://i.imgur.com/sMeQDtx.jpg'},
             airport: 'PUQ',
-            description: 'Duel mountain peaks in the background with a winding road next to a lake',
+            description: 'Duel mountain peaks in the background surrounding a bright blue lake during a sunset',
             location: 'Patagonia, Chile',
             attraction: 'Torres Del Paine National Park',
             why: 'Explore breathe-taking views that inspired your favorite outdoor brand.'
@@ -119,7 +119,7 @@ export const reducer = (state = initialState, action) => {
         return Object.assign({}, state, {
             flightInformationView: false,
             destinationImagesView: true,
-            destinationImages: state.destinationImages.slice(1)
+            destinationImages: [...state.destinationImages.slice(1), state.destinationImages[0]]
         })
     } else if (action.type === SEARCH_FLIGHT_REQUEST) {
 		return Object.assign({}, state, {

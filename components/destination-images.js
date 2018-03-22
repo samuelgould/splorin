@@ -54,6 +54,21 @@ export class DestinationImages extends React.Component {
             >
                 <ImageBackground style={styles.image} source={source} alt={description}>   
                     <View style={styles.iconContainer}>
+                        <Icon
+                            reverse
+                            name='info'
+                            type='entypo'
+                            color='#33CC99'
+                            // onPress={() => this.props.dispatch(restartSearch())}
+                        />
+                        <Icon
+                            reverse
+                            name='home'
+                            color='#8D4E85'
+                            onPress={() => this.props.dispatch(restartSearch())}
+                        />
+                    </View>
+                    <View style={styles.iconContainer}>
                         <Icon 
                             reverse
                             name='flight-takeoff'
@@ -76,7 +91,8 @@ export class DestinationImages extends React.Component {
 const styles = StyleSheet.create({
     image: {
         flex: 1,
-        justifyContent: 'center',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
         alignItems: 'center',
         width: 400
     },
@@ -85,7 +101,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row-reverse',
         justifyContent: 'space-around',
         width: '100%',
-        paddingTop: 450
     }
   });
   
