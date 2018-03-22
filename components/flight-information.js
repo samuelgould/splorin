@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, PricingCard } from 'react-native-elements';
 import { nextDestinationImage, displayNextDestinationImage } from '../actions/flight';
@@ -35,22 +35,9 @@ export class FlightInformation extends React.Component {
         }
         
         return (
-                <View>
-                    <PricingCard
-                        color='#33CC99'
-                        title='Torres Del Paine'
-                        price={`$${flight.conversion.USD}`}
-                        info={['1 User', 'Basic Support', 'All Core Features']}
-                        button={{ title: 'GET ADVENTURING', icon: 'flight-takeoff' }}
-                    />
-    
-                    <Button
-                        onPress={() => this.props.dispatch(displayNextDestinationImage())}
-                        title='Keep Splorin'
-                        backgroundColor='#8D4E85'
-                        fontWeight='bold'
-                    />
-                </View>
+            <View>
+                {display}
+            </View>
         )
     }
 }

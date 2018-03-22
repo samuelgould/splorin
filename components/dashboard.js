@@ -43,7 +43,7 @@ export class Dashboard extends React.Component {
         {startLocation}
         {pickDates}
         {destinationImages}
-        {FlightInformation}
+        {flightInformation}
       </View>
     )
   }
