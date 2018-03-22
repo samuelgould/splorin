@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Linking } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, PricingCard } from 'react-native-elements';
 import { nextDestinationImage, displayNextDestinationImage } from '../actions/flight';
@@ -7,8 +7,10 @@ import { nextDestinationImage, displayNextDestinationImage } from '../actions/fl
 export class FlightInformation extends React.Component {  
     render() {
         
-        const { flight, loading } = this.props;
+        const { flight, loading, destinationImages } = this.props;
         
+        const { location, attraction, why } = destinationImages[0];
+
         let display = (
             <Text>Loading...</Text>
         );
@@ -18,10 +20,14 @@ export class FlightInformation extends React.Component {
                 <View>
                     <PricingCard
                         color='#33CC99'
-                        title='Torres Del Paine'
+                        title={location}
                         price={`$${flight.conversion.USD}`}
-                        info={['1 User', 'Basic Support', 'All Core Features']}
-                        button={{ title: 'GET ADVENTURING', icon: 'flight-takeoff' }}
+                        info={[`${flight.flyFrom} <-> ${flight.flyTo}` , attraction, why]}
+                        button={{ 
+                            title: 'GET ADVENTURING', 
+                            icon: 'flight-takeoff'
+                        }}
+                        onButtonPress={() => Linking.openURL(flight.deep_link)}
                     />
     
                     <Button
@@ -44,7 +50,8 @@ export class FlightInformation extends React.Component {
 
 const mapStateToProps = state => ({
     flight: state.flight,
-    loading: state.loading
+    loading: state.loading,
+    destinationImages: state.destinationImages
 })
 
 export default connect(mapStateToProps)(FlightInformation);

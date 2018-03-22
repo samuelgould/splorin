@@ -21,7 +21,25 @@ const initialState = {
     destination: null,
     loading: false,
     error: null,
-    flight: null
+    flight: null,
+    destinationImages: [
+        {
+            source: {uri: 'https://i.imgur.com/VvTCt8m.png'},
+            airport: 'PUQ',
+            description: 'Duel mountain peaks in the background with a winding road next to a lake',
+            location: 'Patagonia, Chile',
+            attraction: 'Torres Del Paine',
+            why: 'Hike the W'
+        },
+        {
+            source: {uri: 'https://i.imgur.com/vWssU.jpg'},
+            airport: 'HKG',
+            description: 'The lush, greeen Hong Kong Hills right next to the towering skyscrappers of Hong Kong',
+            location: 'Hong Kong',
+            attraction: 'Hong Kong Hills',
+            why: 'Pearl of the Orient'
+        },
+    ]
   }
 
 export const reducer = (state = initialState, action) => {
@@ -51,7 +69,8 @@ export const reducer = (state = initialState, action) => {
     } else if (action.type === DISPLAY_NEXT_DESTINATION_IMAGE) {
         return Object.assign({}, state, {
             flightInformationView: false,
-            destinationImagesView: true
+            destinationImagesView: true,
+            destinationImages: state.destinationImages.slice(1)
         })
     } else if (action.type === SEARCH_FLIGHT_REQUEST) {
 		return Object.assign({}, state, {

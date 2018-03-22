@@ -6,18 +6,9 @@ import { searchFlight, displayNextDestinationImage } from '../actions/flight';
 
 export class DestinationImages extends React.Component {
     render() {
-        const destinationImages = [
-            {
-                source: {uri: 'https://i.imgur.com/VvTCt8m.png'},
-                airport: 'PUQ',
-                description: 'Duel mountain peaks in the background with a winding road next to a lake',
-                location: 'Torres Del Paine National Park, Patagonia, Chile'
-            }
-        ]
+        let { code, startDate, endDate, destinationImages } = this.props;
 
-        const destination = destinationImages[0].airport;
-
-        let { code, startDate, endDate } = this.props;
+        const { source, description, airport } = destinationImages[0];
         
         startDate = new Date(startDate);
         startDay = startDate.getDate();
@@ -30,13 +21,13 @@ export class DestinationImages extends React.Component {
         endYear = endDate.getFullYear();
 
         return (
-            <ImageBackground style={styles.image} source={destinationImages[0].source} alt={destinationImages[0].description}>   
+            <ImageBackground style={styles.image} source={source} alt={description}>   
                 <View style={styles.iconContainer}>
                     <Icon 
                         reverse
                         name='flight-takeoff'
                         color='#33CC99'
-                        onPress={() => this.props.dispatch(searchFlight(code, destination, startDay, startMonth, startYear, endDay, endMonth, endYear))}
+                        onPress={() => this.props.dispatch(searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear))}
                     />
                     <Icon 
                         reverse
@@ -70,7 +61,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     code: state.code,
     startDate: state.startDate,
-    endDate: state.endDate    
+    endDate: state.endDate,
+    destinationImages: state.destinationImages    
 })
 
 export default connect(mapStateToProps)(DestinationImages);
