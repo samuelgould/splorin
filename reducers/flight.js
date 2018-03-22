@@ -28,17 +28,33 @@ const initialState = {
             airport: 'PUQ',
             description: 'Duel mountain peaks in the background with a winding road next to a lake',
             location: 'Patagonia, Chile',
-            attraction: 'Torres Del Paine',
-            why: 'Hike the W'
+            attraction: 'Torres Del Paine National Park',
+            why: 'Explore breathe-taking views that inspired your favorite outdoor brand.'
         },
         {
-            source: {uri: 'https://i.imgur.com/vWssU.jpg'},
+            source: {uri: 'https://i.imgur.com/BXJ40.jpg'},
             airport: 'HKG',
-            description: 'The lush, greeen Hong Kong Hills right next to the towering skyscrappers of Hong Kong',
+            description: 'The lush, greeen Hong Kong Hills right next to the towering skyscrappers of Hong Kong lit up at night',
             location: 'Hong Kong',
-            attraction: 'Hong Kong Hills',
-            why: 'Pearl of the Orient'
+            attraction: 'The Peak of Hong Kong',
+            why: 'Find skyscrappers in the midst of lush green hills in the city where contrast, variety, trendiness and excitement live side by side.'
         },
+        {
+            source: {uri: 'https://i.imgur.com/SAT57Cy.jpg'},
+            airport: 'YYC',
+            description: 'The bright blue water of Lake Louise reflecting the surrounding snowcapped mountains',
+            location: 'Banff, Canada',
+            attraction: 'Banff National Park',
+            why: 'Enjoy the celestial blue waters of Lake Louise in the heart of the Canadian Rockies with glaciers only a short hike away.'
+        },
+        {
+            source: {uri: 'https://i.imgur.com/Iwgn9ly.jpg'},
+            airport: 'REP',
+            description: 'The lush, greeen Hong Kong Hills right next to the towering skyscrappers of Hong Kong lit up at night',
+            location: 'Cambodia',
+            attraction: 'Ta Prohm',
+            why: 'Revel in the remains of the Khmer Empire, exploring the ancient temples of Ankgor Wat, Ta Prohm, and Bayon.'
+        }
     ]
   }
 
