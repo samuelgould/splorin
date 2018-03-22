@@ -26,9 +26,9 @@ export const submitTravelDates = () => ({
   type: SUBMIT_TRAVEL_DATES
 });
 
-export const SEARCH_FLIGHT_LOADING = 'SEARCH_FLIGHT_LOADING';
-export const searchFlightLoading = () => ({
-  type: SEARCH_FLIGHT_LOADING
+export const SEARCH_FLIGHT_REQUEST = 'SEARCH_FLIGHT_REQUEST';
+export const searchFlightRequest = () => ({
+  type: SEARCH_FLIGHT_REQUEST
 });
 
 export const SEARCH_FLIGHT_SUCCESS = 'SEARCH_FLIGHT_SUCCESS';
@@ -43,8 +43,9 @@ export const searchFlightError = error => ({
   error
 });
 
-export const searchFlight = (departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear) => {
-    fetch(`https://api.skypicker.com/flights?flyFrom=${departure}&to=${destination}&dateFrom=${startDay}%2F${startMonth}%2F${startYear}&dateTo=${startDay}%2F${startMonth}%2F${startYear}&returnFrom=${endDay}%2F${endMonth}%2F${endYear}&returnTo=${endDay}%2F${endMonth}%2F${endYear}&typeFlight=round&partner=picky&partner_market=us&curr=USD&locale=en-US&stopoverto=00%3A00&maxstopovers=0&limit=1&sort=price&asc=1`, 
+export const searchFlight = (departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear) => dispatch => {
+    dispatch(searchFlightRequest());
+    return fetch(`https://api.skypicker.com/flights?flyFrom=${departure}&to=${destination}&dateFrom=${startDay}%2F${startMonth}%2F${startYear}&dateTo=${startDay}%2F${startMonth}%2F${startYear}&returnFrom=${endDay}%2F${endMonth}%2F${endYear}&returnTo=${endDay}%2F${endMonth}%2F${endYear}&typeFlight=round&partner=picky&partner_market=us&curr=USD&locale=en-US&maxstopovers=2&limit=1&sort=price&asc=1`, 
 	{
 		method: 'GET',
 		headers: {
@@ -58,6 +59,9 @@ export const searchFlight = (departure, destination, startDay, startMonth, start
 		return res.json()
 	})
 	.then(results => {
-    console.log(results);
-	})
+        dispatch(searchFlightSuccess(results.data[0]));
+    })
+    .catch(err => 
+        dispatch(searchFlightError(err))
+    )
 }

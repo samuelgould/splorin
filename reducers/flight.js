@@ -3,7 +3,10 @@ import {
     SUBMIT_DEPARTURE_AIRPORT,
     STORE_START_DATE,
     STORE_END_DATE,
-    SUBMIT_TRAVEL_DATES
+    SUBMIT_TRAVEL_DATES,
+    SEARCH_FLIGHT_REQUEST,
+    SEARCH_FLIGHT_SUCCESS,
+    SEARCH_FLIGHT_ERROR
 } from '../actions/flight';
 
 const initialState = { 
@@ -13,7 +16,10 @@ const initialState = {
     code: null,
     startDate: null,
     endDate: null,
-    destination: null
+    destination: null,
+    loading: false,
+    error: null,
+    flight: null
   }
 
 export const reducer = (state = initialState, action) => {
@@ -39,6 +45,21 @@ export const reducer = (state = initialState, action) => {
         return Object.assign({}, state, {
             pickDatesView: false,
             destinationImagesView: true
+        })
+    } else if (action.type === SEARCH_FLIGHT_REQUEST) {
+		return Object.assign({}, state, {
+			loading: true,
+		})
+	} else if (action.type === SEARCH_FLIGHT_SUCCESS) {
+		return Object.assign({}, state, {
+			flight: action.flight,
+			loading: false,
+			error: null
+		})
+	} else if (action.type === SEARCH_FLIGHT_ERROR) {
+		return Object.assign({}, state, {
+			loading: false,
+			error: action.error
         })
     }
 	return state;

@@ -16,6 +16,7 @@ export class DestinationImages extends React.Component {
         ]
 
         const destination = destinationImages[0].airport;
+        
         let { code, startDate, endDate } = this.props;
         
         startDate = new Date(startDate);
