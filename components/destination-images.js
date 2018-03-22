@@ -3,18 +3,24 @@ import { View, StyleSheet, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements';
 import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
-import { searchFlight, displayNextDestinationImage } from '../actions/flight';
+import { searchFlight, displayNextDestinationImage, restartSearch } from '../actions/flight';
 
 export class DestinationImages extends React.Component {
     onSwipe(gestureName, code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear) {
-        const { SWIPE_LEFT, SWIPE_RIGHT } = swipeDirections;
+        const { SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT } = swipeDirections;
         switch (gestureName) {
-          case SWIPE_LEFT:
-            this.props.dispatch(displayNextDestinationImage())
-            break;
-          case SWIPE_RIGHT:
-            this.props.dispatch(searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear));
-            break;
+            // case SWIPE_UP:
+                
+            //     break;
+            case SWIPE_DOWN:
+                this.props.dispatch(restartSearch());
+                break;
+            case SWIPE_LEFT:
+                this.props.dispatch(displayNextDestinationImage());
+                break;
+            case SWIPE_RIGHT:
+                this.props.dispatch(searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear));
+                break;
         }
     }
 

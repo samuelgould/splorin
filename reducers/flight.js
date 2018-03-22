@@ -7,7 +7,8 @@ import {
     SEARCH_FLIGHT_REQUEST,
     SEARCH_FLIGHT_SUCCESS,
     SEARCH_FLIGHT_ERROR,
-    DISPLAY_NEXT_DESTINATION_IMAGE
+    DISPLAY_NEXT_DESTINATION_IMAGE,
+    RESTART_SEARCH
 } from '../actions/flight';
 
 const initialState = { 
@@ -136,6 +137,10 @@ export const reducer = (state = initialState, action) => {
 		return Object.assign({}, state, {
 			loading: false,
 			error: action.error
+        })
+    } else if (action.type === RESTART_SEARCH) {
+        return Object.assign({}, initialState, {
+            code: state.code
         })
     }
 	return state;
