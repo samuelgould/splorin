@@ -49,6 +49,7 @@ export class PickDates extends React.Component {
                 title='Start Splorin'
                 backgroundColor='#33CC99'
                 fontWeight='bold'
+                borderRadius={10}
             />
 
         </View>

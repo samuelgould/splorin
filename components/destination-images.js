@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements';
 import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
-import { searchFlight, displayNextDestinationImage, restartSearch } from '../actions/flight';
+import { searchFlight, displayNextDestinationImage, restartSearch, toggleMoreInfo } from '../actions/flight';
 
 export class DestinationImages extends React.Component {
     onSwipe(gestureName, code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear) {
@@ -25,9 +25,9 @@ export class DestinationImages extends React.Component {
     }
 
     render() {
-        let { code, startDate, endDate, destinationImages } = this.props;
+        let { code, startDate, endDate, destinationImages, moreInfo } = this.props;
 
-        const { source, description, airport } = destinationImages[0];
+        const { source, description, airport, attraction, location, why } = destinationImages[0];
         
         startDate = new Date(startDate);
         startDay = startDate.getDate();
@@ -42,6 +42,18 @@ export class DestinationImages extends React.Component {
         const config = {
             velocityThreshold: 0.3,
             directionalOffsetThreshold: 80
+        };
+
+        let info;
+
+        if (moreInfo) {
+            info = (
+                <View style={styles.textBox}>
+                    <Text style={styles.header}>{attraction}</Text>
+                    <Text style={styles.subHeader}>in {location}</Text>
+                    <Text style={styles.text}>{why}</Text>
+                </View>
+            )
         };
 
         return (
@@ -59,7 +71,7 @@ export class DestinationImages extends React.Component {
                             name='info'
                             type='entypo'
                             color='#33CC99'
-                            // onPress={() => this.props.dispatch(restartSearch())}
+                            onPress={() => this.props.dispatch(toggleMoreInfo())}
                         />
                         <Icon
                             reverse
@@ -68,6 +80,7 @@ export class DestinationImages extends React.Component {
                             onPress={() => this.props.dispatch(restartSearch())}
                         />
                     </View>
+                    {info}
                     <View style={styles.iconContainer}>
                         <Icon 
                             reverse
@@ -101,6 +114,38 @@ const styles = StyleSheet.create({
         flexDirection: 'row-reverse',
         justifyContent: 'space-around',
         width: '100%',
+    },
+    header: {
+        color: '#33CC99',
+        fontWeight: 'bold',
+        fontSize: 24,
+        textAlign: 'center'
+    },
+    subHeader: {
+        color: '#33CC99',
+        fontWeight: 'bold',
+        fontSize: 18,
+        textAlign: 'center'
+    },
+    text: {
+        color: '#8D4E85',
+        fontWeight: 'bold',
+        fontSize: 18,
+        margin: 10
+    },
+    textBox: {
+        width: 300,
+        backgroundColor: 'white',
+        margin: 15,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#ddd',
+        borderBottomWidth: 0,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 1
     }
   });
   
@@ -109,7 +154,8 @@ const mapStateToProps = state => ({
     code: state.code,
     startDate: state.startDate,
     endDate: state.endDate,
-    destinationImages: state.destinationImages    
+    destinationImages: state.destinationImages,
+    moreInfo: state.moreInfo    
 })
 
 export default connect(mapStateToProps)(DestinationImages);

@@ -71,6 +71,11 @@ export const searchFlight = (departure, destination, startDay, startMonth, start
   )
 }
 
+export const TOGGLE_MORE_INFO = 'TOGGLE_MORE_INFO';
+export const toggleMoreInfo = () => ({
+  type: TOGGLE_MORE_INFO
+});
+
 export const RESTART_SEARCH = 'RESTART_SEARCH';
 export const restartSearch = () => ({
   type: RESTART_SEARCH
