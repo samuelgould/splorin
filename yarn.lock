@@ -5650,6 +5650,10 @@ react-native-scripts@1.11.1:
     color "^0.11.1"
     lodash "^4.0.0"
 
+react-native-swipe-gestures@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-swipe-gestures/-/react-native-swipe-gestures-1.0.2.tgz#914e1a72a94bc55b322b4622a01103ab879296dd"
+
 react-native-vector-icons@4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-4.1.1.tgz#9ac75bde77d9243346668c51dca7756775428087"
