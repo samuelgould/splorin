@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, TextInput, Alert } from 'react-native';
-import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, StyleSheet, TextInput, Text, Alert } from 'react-native';
+import { Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { storeDepartureAirport, submitDepartureAirport } from '../actions/flight';
 
@@ -31,19 +30,13 @@ export class StartLocation extends React.Component {
           onChangeText={code => this.props.dispatch(storeDepartureAirport(code))}
           placeholder='Home Airport Code (e.g. SFO)'
           value={this.props.code}
-        />
-
+        />     
         <Button
-                icon={
-                    <Icon
-                    name='arrow-right'
-                    size={15}
-                    color='white'
-                    />
-                }
-                onPress={() => this.submitDepartureAirport()}
-                title='When Do You Want to Fly?'
-            />
+          onPress={() => this.submitDepartureAirport()}
+          title='Continue'
+          backgroundColor='#33CC99'
+          fontWeight='bold'
+        />
 
       </View>
     )

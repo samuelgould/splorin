@@ -1,8 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, TextInput, Alert } from 'react-native';
 import { connect } from 'react-redux';
-import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Button, Icon } from 'react-native-elements';
 import CalendarPicker from 'react-native-calendar-picker';
 import { submitTravelDates, storeStartDate, storeEndDate } from '../actions/flight';
 
@@ -40,21 +39,16 @@ export class PickDates extends React.Component {
               allowRangeSelection={true}
               minDate={minDate}
               maxDate={maxDate}
-              todayBackgroundColor="#f2e6ff"
-              selectedDayColor="#7300e6"
+              todayBackgroundColor="#C8C8CD"
+              selectedDayColor="#8D4E85"
               onDateChange={date => this.onDateChange(date)}
             />
 
             <Button
-                icon={
-                    <Icon
-                    name='arrow-right'
-                    size={15}
-                    color='white'
-                    />
-                }
                 onPress={() => this.submitTravelDates()}
                 title='Start Splorin'
+                backgroundColor='#33CC99'
+                fontWeight='bold'
             />
 
         </View>

@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
+import { Icon } from 'react-native-elements';
 
 export class DestinationImages extends React.Component {
     render() {
@@ -13,21 +14,38 @@ export class DestinationImages extends React.Component {
             }
         ]
         return (
-            <View style={styles.imageContainer}>
-                <Image style={styles.image} source={destinationImages[0].source} alt={destinationImages[0].description} />
-            </View>
+            <ImageBackground style={styles.image} source={destinationImages[0].source} alt={destinationImages[0].description}>   
+                <View style={styles.iconContainer}>
+                    <Icon 
+                        reverse
+                        name='flight-takeoff'
+                        color='#33CC99'
+
+                    />
+                    <Icon 
+                        reverse
+                        name='delete'
+                        color='#8D4E85'  
+                    />
+                </View>
+            </ImageBackground>
             )
     }
 }
 
 const styles = StyleSheet.create({
-    imageContainer: {
-      flex: 1,
-      alignItems: 'stretch',
-    },
     image: {
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
         width: 400
+    },
+    iconContainer: {
+        flex: 1,
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-around',
+        width: '100%',
+        paddingTop: 450
     }
   });
   
