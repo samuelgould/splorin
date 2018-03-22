@@ -4,21 +4,15 @@ import { connect } from 'react-redux';
 import StartLocation from './start-location';
 import PickDates from './pick-dates';
 import DestinationImages from './destination-images';
+import FlightInformation from './flight-information';
 
 export class Dashboard extends React.Component {
-
-  // visitLocation(destination) {
-  //   let dividedDate = this.state.date.split('/');
-  //   let day = dividedDate[1];
-  //   let month = dividedDate[0];
-  //   let year = dividedDate[2];
-    
-  //   
 
   render() {
     let startLocation;
     let pickDates;
     let destinationImages;
+    let flightInformation;
     
     if (this.props.startLocation) {
       startLocation = (
@@ -37,12 +31,19 @@ export class Dashboard extends React.Component {
         <DestinationImages />
       )
     }
+
+    if (this.props.flightInformation) {
+      flightInformation = (
+        <FlightInformation />
+      )
+    }
       
     return (
       <View>
         {startLocation}
         {pickDates}
         {destinationImages}
+        {FlightInformation}
       </View>
     )
   }
@@ -51,7 +52,8 @@ export class Dashboard extends React.Component {
 const mapStateToProps = state => ({
   startLocation: state.startLocationView,
   pickDates: state.pickDatesView,
-  destinationImages: state.destinationImagesView
+  destinationImages: state.destinationImagesView,
+  flightInformation: state.flightInformationView
 })
 
 export default connect(mapStateToProps)(Dashboard);

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements';
-import { searchFlight } from '../actions/flight';
+import { searchFlight, displayNextDestinationImage } from '../actions/flight';
 
 export class DestinationImages extends React.Component {
     render() {
@@ -16,7 +16,7 @@ export class DestinationImages extends React.Component {
         ]
 
         const destination = destinationImages[0].airport;
-        
+
         let { code, startDate, endDate } = this.props;
         
         startDate = new Date(startDate);
@@ -41,7 +41,8 @@ export class DestinationImages extends React.Component {
                     <Icon 
                         reverse
                         name='delete'
-                        color='#8D4E85'  
+                        color='#8D4E85'
+                        onPress={() => this.props.dispatch(displayNextDestinationImage())}
                     />
                 </View>
             </ImageBackground>

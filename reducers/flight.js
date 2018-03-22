@@ -6,13 +6,15 @@ import {
     SUBMIT_TRAVEL_DATES,
     SEARCH_FLIGHT_REQUEST,
     SEARCH_FLIGHT_SUCCESS,
-    SEARCH_FLIGHT_ERROR
+    SEARCH_FLIGHT_ERROR,
+    DISPLAY_NEXT_DESTINATION_IMAGE
 } from '../actions/flight';
 
 const initialState = { 
     startLocationView: true,
     pickDatesView: false,
     destinationImagesView: false,
+    flightInformationView: false,
     code: null,
     startDate: null,
     endDate: null,
@@ -46,15 +48,22 @@ export const reducer = (state = initialState, action) => {
             pickDatesView: false,
             destinationImagesView: true
         })
+    } else if (action.type === DISPLAY_NEXT_DESTINATION_IMAGE) {
+        return Object.assign({}, state, {
+            flightInformationView: false,
+            destinationImagesView: true
+        })
     } else if (action.type === SEARCH_FLIGHT_REQUEST) {
 		return Object.assign({}, state, {
-			loading: true,
+            loading: true,
+            destinationImagesView: false,
+            flightInformationView: true
 		})
 	} else if (action.type === SEARCH_FLIGHT_SUCCESS) {
 		return Object.assign({}, state, {
 			flight: action.flight,
 			loading: false,
-			error: null
+            error: null
 		})
 	} else if (action.type === SEARCH_FLIGHT_ERROR) {
 		return Object.assign({}, state, {

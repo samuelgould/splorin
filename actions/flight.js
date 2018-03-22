@@ -26,6 +26,11 @@ export const submitTravelDates = () => ({
   type: SUBMIT_TRAVEL_DATES
 });
 
+export const DISPLAY_NEXT_DESTINATION_IMAGE = 'DISPLAY_NEXT_DESTINATION_IMAGE';
+export const displayNextDestinationImage = () => ({
+  type: DISPLAY_NEXT_DESTINATION_IMAGE
+});
+
 export const SEARCH_FLIGHT_REQUEST = 'SEARCH_FLIGHT_REQUEST';
 export const searchFlightRequest = () => ({
   type: SEARCH_FLIGHT_REQUEST
