@@ -2,14 +2,14 @@ import React from 'react';
 import { View, StyleSheet, Text, Image, Linking } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, PricingCard } from 'react-native-elements';
-import { nextDestinationImage, displayCurrentDestinationImage } from '../actions/flight';
+import { nextDestinationImage, displayCurrentDestinationImage, searchFlightWithNoRestrictions } from '../actions/flight';
 
 export class FlightInformation extends React.Component {  
     render() {
         
-        const { flight, loading, destinationImages } = this.props;
+        let { code, startDate, endDate, flight, loading, destinationImages, noRestrictionsFail } = this.props;
         
-        const { location, attraction, why } = destinationImages[0];
+        const { airport, location, attraction, why } = destinationImages[0];
 
         let display = (
             <View style={styles.loadingContainer}>
@@ -37,7 +37,7 @@ export class FlightInformation extends React.Component {
         
                         <Button
                             onPress={() => this.props.dispatch(displayCurrentDestinationImage())}
-                            title='Keep Splorin'
+                            title="Keep Splorin'"
                             backgroundColor='#8D4E85'
                             fontWeight='bold'
                             fontSize={20}
@@ -45,19 +45,52 @@ export class FlightInformation extends React.Component {
                         />
                     </View>
                 )    
-            } else {
+            } else if (noRestrictionsFail) {
                 display = (
                     <View style={styles.whoopsContainer}>
-                        <Text style={styles.whoops}>Whoops...looks like we can't find a reasonable flight for you. Sorry!</Text>
+                        <Text style={styles.whoops}>Sorry...we can't find anything. Seems like planes don't fly between these two places. Try another destination.</Text>
                         <Image source={require('../images/dinoSplorinLogo.png')} alt='Splorin Logo with Dino and Backpack only' style={styles.logoDino}/>
                         <Button
-                                onPress={() => this.props.dispatch(displayCurrentDestinationImage())}
-                                title='Keep Splorin'
-                                backgroundColor='#8D4E85'
-                                fontWeight='bold'
-                                fontSize={20}
-                                style={styles.button}
-                            />
+                            onPress={() => this.props.dispatch(displayCurrentDestinationImage())}
+                            title="Keep Splorin'"
+                            backgroundColor='#8D4E85'
+                            fontWeight='bold'
+                            fontSize={20}
+                            style={styles.button}
+                        />
+                    </View>
+                )
+            } else {
+                startDate = new Date(startDate);
+                startDay = startDate.getDate();
+                startMonth = startDate.getMonth() + 1;
+                startYear = startDate.getFullYear();
+
+                endDate = new Date(endDate);
+                endDay = endDate.getDate();
+                endMonth = endDate.getMonth() + 1;
+                endYear = endDate.getFullYear();
+                
+                display = (
+                    <View style={styles.whoopsContainer}>
+                        <Text style={styles.whoops}>Whoops...looks like we can't find a reasonable flight for you. We restrict ourselves to only showing itineraries with 2 stops or fewer, because any more than that feels excessive to us. Would you like us to see if there are any possible flight options?</Text>
+                        <Button
+                            onPress={() => this.props.dispatch(searchFlightWithNoRestrictions(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear))}
+                            title="Show Me ANYTHING"
+                            backgroundColor='#33CC99'
+                            fontWeight='bold'
+                            fontSize={20}
+                            style={styles.button}
+                        />
+                        <Image source={require('../images/dinoSplorinLogo.png')} alt='Splorin Logo with Dino and Backpack only' style={styles.logoDino}/>
+                        <Button
+                            onPress={() => this.props.dispatch(displayCurrentDestinationImage())}
+                            title="Keep Splorin'"
+                            backgroundColor='#8D4E85'
+                            fontWeight='bold'
+                            fontSize={20}
+                            style={styles.button}
+                        />
                     </View>
                 )
             }
@@ -101,7 +134,7 @@ const styles = StyleSheet.create({
     whoops: {
         fontWeight: 'bold',
         width: 300,
-        fontSize: 24,
+        fontSize: 16,
         color: '#8D4E85',
         margin: 20,
         shadowColor: 'black',
@@ -116,6 +149,7 @@ const styles = StyleSheet.create({
     logoDino: {
         width: 300, 
         height: 200,
+        margin: 15,
         shadowColor: 'black',
         shadowOpacity: 0.5,
         shadowRadius: 10,
@@ -137,6 +171,7 @@ const styles = StyleSheet.create({
         }
     },
     button: {
+        minWidth: 250,
         shadowColor: 'black',
         shadowOpacity: 0.5,
         shadowRadius: 10,
@@ -151,7 +186,11 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     flight: state.flight,
     loading: state.loading,
-    destinationImages: state.destinationImages
+    destinationImages: state.destinationImages,
+    startDate: state.startDate,
+    endDate: state.endDate,
+    code: state.code,
+    noRestrictionsFail: state.noRestrictionsFail
 })
 
 export default connect(mapStateToProps)(FlightInformation);
