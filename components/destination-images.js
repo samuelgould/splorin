@@ -36,7 +36,6 @@ export class DestinationImages extends React.Component {
                 ],
                 { cancelable: false }
             )
-            }
         }
     }
 
