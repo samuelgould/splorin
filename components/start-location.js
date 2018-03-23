@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, TextInput, Text, Alert } from 'react-native';
+import { View, StyleSheet, TextInput, Image, Alert } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { storeDepartureAirport, submitDepartureAirport } from '../actions/flight';
@@ -41,12 +41,7 @@ export class StartLocation extends React.Component {
           />
         </View>
 
-        <Text
-          size={36}
-          color='#33CC99'
-        >
-          Splorin'
-        </Text>
+        <Image source={require('../images/fullSplorinLogo.png')} alt='Splorin Logo with Dino and text' style={{width: 300, height: 300}}/>
 
       </View>
     )
