@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     alignItems: 'center'
   },
   textInput: {
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 300, 
     height: 300,
+    margin: 50,
     shadowColor: 'black',
     shadowOpacity: 0.5,
     shadowRadius: 10,
