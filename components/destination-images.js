@@ -88,14 +88,12 @@ export class DestinationImages extends React.Component {
                                 type='entypo'
                                 color='#33CC99'
                                 onPress={() => this.props.dispatch(toggleMoreInfo())}
-                                style={styles.shadow}
                             />
                             <Icon
                                 reverse
                                 name='home'
                                 color='#8D4E85'
                                 onPress={() => this.props.dispatch(restartSearch())}
-                                style={styles.shadow}
                             />
                         </View>
                         {info}
@@ -105,14 +103,12 @@ export class DestinationImages extends React.Component {
                                 name='flight-takeoff'
                                 color='#33CC99'
                                 onPress={() => this.searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
-                                style={styles.shadow}
                             />
                             <Icon 
                                 reverse
                                 name='delete'
                                 color='#8D4E85'
                                 onPress={() => this.props.dispatch(displayNextDestinationImage())}
-                                style={styles.shadow}
                             />
                         </View>
                     </View>
@@ -169,21 +165,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.8,
         shadowRadius: 2,
         elevation: 1
-    },
-    shadow: {
-        textShadowColor: 'black',
-        shadowOpacity: 0.5,
-        shadowRadius: 10,
-        // iOS
-        textShadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        // Android
-        textShadowOffset: {
-            width: 0,
-            height: 1,
-        }
     }
   });
   
