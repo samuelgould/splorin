@@ -80,7 +80,8 @@ const styles = StyleSheet.create({
     },
     logo: {
         width: 100, 
-        height: 67, 
+        height: 67,
+        marginLeft: 50,
         alignSelf: 'flex-start',
         shadowColor: 'black',
         shadowOpacity: 0.5,
