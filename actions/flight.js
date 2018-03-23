@@ -65,7 +65,7 @@ export const searchFlight = (departure, destination, startDay, startMonth, start
 	.then(res => {
 		if (!res.ok) {
 			return Promise.reject('Something has gone wrong');
-		}
+    }
 		return res.json()
 	})
 	.then(results => {
@@ -75,6 +75,38 @@ export const searchFlight = (departure, destination, startDay, startMonth, start
     dispatch(searchFlightError(err))
   )
 }
+
+export const searchFlightWithNoRestrictions = (departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear) => dispatch => {
+  dispatch(searchFlightRequest());
+  return fetch(`https://api.skypicker.com/flights?flyFrom=${departure}&to=${destination}&dateFrom=${startDay}%2F${startMonth}%2F${startYear}&dateTo=${startDay}%2F${startMonth}%2F${startYear}&returnFrom=${endDay}%2F${endMonth}%2F${endYear}&returnTo=${endDay}%2F${endMonth}%2F${endYear}&typeFlight=round&partner=picky&partner_market=us&curr=USD&locale=en-US&limit=${1}&sort=price&asc=${1}`, 
+  {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(res => {
+    if (!res.ok) {
+      return Promise.reject('Something has gone wrong');
+    }
+    return res.json()
+  })
+  .then(results => {
+    if (results.data[0]) {
+      dispatch(searchFlightSuccess(results.data[0]));
+    } else {
+      dispatch(searchFlightWithNoRestrictionsFail());
+    }
+  })
+  .catch(err => 
+    dispatch(searchFlightError(err))
+  )
+}
+
+export const SEARCH_FLIGHT_WITH_NO_RESTRICTIONS_FAIL = 'SEARCH_FLIGHT_WITH_NO_RESTRICTIONS_FAIL';
+export const searchFlightWithNoRestrictionsFail = () => ({
+  type: SEARCH_FLIGHT_WITH_NO_RESTRICTIONS_FAIL
+});
 
 export const TOGGLE_MORE_INFO = 'TOGGLE_MORE_INFO';
 export const toggleMoreInfo = () => ({

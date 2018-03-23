@@ -7,6 +7,7 @@ import {
     SEARCH_FLIGHT_REQUEST,
     SEARCH_FLIGHT_SUCCESS,
     SEARCH_FLIGHT_ERROR,
+    SEARCH_FLIGHT_WITH_NO_RESTRICTIONS_FAIL,
     DISPLAY_NEXT_DESTINATION_IMAGE,
     DISPLAY_CURRENT_DESTINATION_IMAGE,
     TOGGLE_MORE_INFO,
@@ -26,6 +27,7 @@ const initialState = {
     loading: false,
     error: null,
     flight: null,
+    noRestrictionsFail: false,
     destinationImages: [
         {
             source: {uri: 'https://i.imgur.com/Y6qMZTX.jpg'},
@@ -127,6 +129,7 @@ export const reducer = (state = initialState, action) => {
         return Object.assign({}, state, {
             flightInformationView: false,
             destinationImagesView: true,
+            noRestrictionsFail: false,
             moreInfo: false
         })
     } else if (action.type === SEARCH_FLIGHT_REQUEST) {
@@ -145,6 +148,11 @@ export const reducer = (state = initialState, action) => {
 		return Object.assign({}, state, {
 			loading: false,
 			error: action.error
+        })
+    } else if (action.type === SEARCH_FLIGHT_WITH_NO_RESTRICTIONS_FAIL) {
+		return Object.assign({}, state, {
+			loading: false,
+			noRestrictionsFail: true
         })
     } else if (action.type === TOGGLE_MORE_INFO) {
 		return Object.assign({}, state, {
