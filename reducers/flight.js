@@ -8,6 +8,7 @@ import {
     SEARCH_FLIGHT_SUCCESS,
     SEARCH_FLIGHT_ERROR,
     DISPLAY_NEXT_DESTINATION_IMAGE,
+    DISPLAY_CURRENT_DESTINATION_IMAGE,
     TOGGLE_MORE_INFO,
     RESTART_SEARCH
 } from '../actions/flight';
@@ -27,9 +28,9 @@ const initialState = {
     flight: null,
     destinationImages: [
         {
-            source: {uri: 'https://i.imgur.com/sMeQDtx.jpg'},
+            source: {uri: 'https://i.imgur.com/Y6qMZTX.jpg'},
             airport: 'PUQ',
-            description: 'Duel mountain peaks in the background surrounding a bright blue lake during a sunset',
+            description: 'Two mountain clusters in the background of a bright blue lake with a little house on an island with a bridge leading to it',
             location: 'Patagonia, Chile',
             attraction: 'Torres Del Paine',
             why: 'Explore breathe-taking views that inspired your favorite outdoor brand.'
@@ -119,10 +120,14 @@ export const reducer = (state = initialState, action) => {
         })
     } else if (action.type === DISPLAY_NEXT_DESTINATION_IMAGE) {
         return Object.assign({}, state, {
-            flightInformationView: false,
-            destinationImagesView: true,
             moreInfo: false,
             destinationImages: [...state.destinationImages.slice(1), state.destinationImages[0]]
+        })
+    } else if (action.type === DISPLAY_CURRENT_DESTINATION_IMAGE) {
+        return Object.assign({}, state, {
+            flightInformationView: false,
+            destinationImagesView: true,
+            moreInfo: false
         })
     } else if (action.type === SEARCH_FLIGHT_REQUEST) {
 		return Object.assign({}, state, {

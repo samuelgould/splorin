@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text, Linking } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, PricingCard } from 'react-native-elements';
-import { nextDestinationImage, displayNextDestinationImage } from '../actions/flight';
+import { nextDestinationImage, displayCurrentDestinationImage } from '../actions/flight';
 
 export class FlightInformation extends React.Component {  
     render() {
@@ -31,10 +31,12 @@ export class FlightInformation extends React.Component {
                     />
     
                     <Button
-                        onPress={() => this.props.dispatch(displayNextDestinationImage())}
+                        onPress={() => this.props.dispatch(displayCurrentDestinationImage())}
                         title='Keep Splorin'
                         backgroundColor='#8D4E85'
                         fontWeight='bold'
+                        fontSize={20}
+                        style={styles.button}
                     />
                 </View>
             )    
@@ -47,6 +49,19 @@ export class FlightInformation extends React.Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    button: {
+        shadowColor: 'black',
+        shadowOpacity: 0.5,
+        shadowRadius: 10,
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        elevation: 1
+    }
+});
 
 const mapStateToProps = state => ({
     flight: state.flight,

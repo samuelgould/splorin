@@ -31,6 +31,11 @@ export const displayNextDestinationImage = () => ({
   type: DISPLAY_NEXT_DESTINATION_IMAGE
 });
 
+export const DISPLAY_CURRENT_DESTINATION_IMAGE = 'DISPLAY_CURRENT_DESTINATION_IMAGE';
+export const displayCurrentDestinationImage = () => ({
+  type: DISPLAY_CURRENT_DESTINATION_IMAGE
+});
+
 export const SEARCH_FLIGHT_REQUEST = 'SEARCH_FLIGHT_REQUEST';
 export const searchFlightRequest = () => ({
   type: SEARCH_FLIGHT_REQUEST
