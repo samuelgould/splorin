@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity, Text, TextInput, Alert } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Image, TextInput, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon } from 'react-native-elements';
 import CalendarPicker from 'react-native-calendar-picker';
@@ -54,12 +54,7 @@ export class PickDates extends React.Component {
                     style={styles.button}
                 />
             </View>
-            <Text
-                fontSize={40}
-                color='#33CC99'
-            >
-                Splorin'
-            </Text>
+            <Image source={require('../images/dinoSplorinLogo.png')} alt='Splorin Logo with Dino and Backpack only' style={{width: 300, height: 200}}/>
         </View>
         )
     }
@@ -69,7 +64,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        marginTop: 15
     },
     button: {
         shadowColor: 'black',
@@ -80,7 +76,7 @@ const styles = StyleSheet.create({
             height: 1,
         },
         elevation: 1,
-        margin: 15,
+        margin: 15
     }
   });
 

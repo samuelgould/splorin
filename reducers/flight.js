@@ -55,7 +55,7 @@ const initialState = {
             source: {uri: 'https://i.imgur.com/Iwgn9ly.jpg'},
             airport: 'REP',
             description: 'The lush, greeen Hong Kong Hills right next to the towering skyscrappers of Hong Kong lit up at night',
-            location: 'Cambodia',
+            location: 'Siem Reap, Cambodia',
             attraction: 'Ta Prohm',
             why: 'Revel in the remains of the Khmer Empire, exploring the ancient temples of Ankgor Wat, Ta Prohm, and Bayon.'
         },
@@ -63,7 +63,7 @@ const initialState = {
             source: {uri: 'https://i.imgur.com/odnVEcd.jpg'},
             airport: 'SFO',
             description: 'The view of the Golden Gate Bridge from Baker Beach during the sunrise',
-            location: 'San Francisco, CA',
+            location: 'San Francisco, California',
             attraction: 'Golden Gate Bridge',
             why: 'Get to know the hills of San Francisco and don\'t miss this stunning view of the Golden Gate Bridge from Baker Beach.'
         },
@@ -71,7 +71,7 @@ const initialState = {
             source: {uri: 'https://i.imgur.com/K15QDrm.jpg'},
             airport: 'HNL',
             description: 'Sunset on the North Shore of Oahu, HI',
-            location: 'Oahu, HI',
+            location: 'Oahu, Hawaii',
             attraction: 'North Shore Beaches',
             why: 'Relax on the beach. Explore the volcanoes. Just don\'t stay inside.'
         },
@@ -79,7 +79,7 @@ const initialState = {
             source: {uri: 'https://i.imgur.com/F3nmZ6C.jpg'},
             airport: 'DEN',
             description: 'A waterfall rushing through the mountainous terrain of the Rocky Mountains',
-            location: 'Rocky Mountain National Park',
+            location: 'Rocky Mountain National Park, Colorado',
             attraction: 'Alberta Falls',
             why: 'Get out on the continental divide and find hidden gems scattered throughout the Rocky Mountain National Park.'
         },
@@ -87,7 +87,7 @@ const initialState = {
             source: {uri: 'https://i.imgur.com/1S60G9Y.jpg'},
             airport: 'DXB',
             description: 'The Burj Khalifa with fountains in the foreground with a sunset in the background',
-            location: 'Dubai',
+            location: 'Dubai, UAE',
             attraction: 'Burj Khalifa',
             why: 'Visit the Burj Khalifa, the tallest building in the world, in the midst of this rapidly gsrowing modern city.'
         }

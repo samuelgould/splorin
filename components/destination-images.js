@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements';
 import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
@@ -19,8 +19,24 @@ export class DestinationImages extends React.Component {
                 this.props.dispatch(displayNextDestinationImage());
                 break;
             case SWIPE_RIGHT:
-                this.props.dispatch(searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear));
+                this.searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear);
                 break;
+        }
+    }
+
+    searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear) {
+        if (code !== airport) {
+            this.props.dispatch(searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear))
+        } else {
+            Alert.alert(
+                'Whoops...',
+                'Seems like you want to visit your own city. Maybe you should stop playing with us and start splorin\'.',
+                [
+                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+            )
+            }
         }
     }
 
@@ -89,7 +105,7 @@ export class DestinationImages extends React.Component {
                                 reverse
                                 name='flight-takeoff'
                                 color='#33CC99'
-                                onPress={() => this.props.dispatch(searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear))}
+                                onPress={() => this.searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
                                 style={styles.shadow}
                             />
                             <Icon 
