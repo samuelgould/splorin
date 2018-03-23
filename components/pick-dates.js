@@ -54,7 +54,7 @@ export class PickDates extends React.Component {
                     style={styles.button}
                 />
             </View>
-            <Image source={require('../images/dinoSplorinLogo.png')} alt='Splorin Logo with Dino and Backpack only' style={{width: 300, height: 200}}/>
+            <Image source={require('../images/dinoSplorinLogo.png')} alt='Splorin Logo with Dino and Backpack only' style={styles.logo}/>
         </View>
         )
     }
@@ -77,8 +77,20 @@ const styles = StyleSheet.create({
         },
         elevation: 1,
         margin: 15
+    },
+    logo: {
+        width: 100, 
+        height: 67, 
+        alignSelf: 'flex-start',
+        shadowColor: 'black',
+        shadowOpacity: 0.5,
+        shadowRadius: 10,
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        }
     }
-  });
+});
 
 const mapStateToProps = state => ({
     startDate: state.startDate,

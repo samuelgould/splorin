@@ -41,7 +41,7 @@ export class StartLocation extends React.Component {
           />
         </View>
 
-        <Image source={require('../images/fullSplorinLogo.png')} alt='Splorin Logo with Dino and text' style={{width: 300, height: 300}}/>
+        <Image source={require('../images/fullSplorinLogo.png')} alt='Splorin Logo with Dino and text' style={styles.logo}/>
 
       </View>
     )
@@ -72,6 +72,17 @@ const styles = StyleSheet.create({
         height: 1,
     },
     elevation: 1,
+  },
+  logo: {
+    width: 300, 
+    height: 300,
+    shadowColor: 'black',
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
+    shadowOffset: {
+        width: 0,
+        height: 1,
+    }
   }
 });
 

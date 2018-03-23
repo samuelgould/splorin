@@ -13,7 +13,7 @@ export class FlightInformation extends React.Component {
 
         let display = (
             <View style={styles.loadingContainer}>
-                <Image source={require('../images/dinoSplorinLogo.png')} alt='Splorin Logo with Dino and Backpack only' style={{width: 300, height: 200}}/>
+                <Image source={require('../images/dinoSplorinLogo.png')} alt='Splorin Logo with Dino and Backpack only' style={styles.logoDino}/>
                 <Text style={styles.loading}>Loading...</Text>
             </View>
         );
@@ -73,6 +73,17 @@ const styles = StyleSheet.create({
             height: 1,
         },
         elevation: 1
+    },
+    logoDino: {
+        width: 300, 
+        height: 200,
+        shadowColor: 'black',
+        shadowOpacity: 0.5,
+        shadowRadius: 10,
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        }
     },
     textLogo: {
         width: 300, 
