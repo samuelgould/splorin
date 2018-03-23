@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, TextInput, Alert } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, TextInput, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon } from 'react-native-elements';
 import CalendarPicker from 'react-native-calendar-picker';
@@ -34,28 +34,55 @@ export class PickDates extends React.Component {
         const maxDate = new Date(2019, 12, 31);
     
         return (
-          <View>
-            <CalendarPicker
-              allowRangeSelection={true}
-              minDate={minDate}
-              maxDate={maxDate}
-              todayBackgroundColor="#C8C8CD"
-              selectedDayColor="#8D4E85"
-              onDateChange={date => this.onDateChange(date)}
-            />
+          <View style={styles.container}>
+            <View>
+                <CalendarPicker
+                    allowRangeSelection={true}
+                    minDate={minDate}
+                    maxDate={maxDate}
+                    todayBackgroundColor="#C8C8CD"
+                    selectedDayColor="#8D4E85"
+                    onDateChange={date => this.onDateChange(date)}
+                />
 
-            <Button
-                onPress={() => this.submitTravelDates()}
-                title='Start Splorin'
-                backgroundColor='#33CC99'
-                fontWeight='bold'
-                borderRadius={10}
-            />
-
+                <Button
+                    onPress={() => this.submitTravelDates()}
+                    title='Start Splorin'
+                    backgroundColor='#33CC99'
+                    fontWeight='bold'
+                    fontSize={20}
+                    style={styles.button}
+                />
+            </View>
+            <Text
+                fontSize={40}
+                color='#33CC99'
+            >
+                Splorin'
+            </Text>
         </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-around'
+    },
+    button: {
+        shadowColor: 'black',
+        shadowOpacity: 0.5,
+        shadowRadius: 10,
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        elevation: 1,
+        margin: 15,
+    }
+  });
 
 const mapStateToProps = state => ({
     startDate: state.startDate,
