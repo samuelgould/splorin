@@ -57,8 +57,17 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 40, 
-    borderColor: 'gray', 
-    borderWidth: 1, 
+    borderColor: '#ccc', 
+    borderWidth: 1,
+    borderRadius: 8,
+    shadowColor: 'black',
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
+    shadowOffset: {
+        width: 0,
+        height: 1,
+    },
+    elevation: 1,
     width: 300, 
     padding: 10,
     margin: 15
