@@ -6,13 +6,33 @@ Splorin' is a travel-inspiration mobile app. Decision paralysis is crippling whe
 
 Landing Page:
 ----------------------------------------------------------------------------------------------
-![LandingPage](./screenshots/splorin-landing-page.png) "LandingPage")
+![LandingPage](./screenshots/splorin-landing-page.png "LandingPage")
+
+Destination Page:
+----------------------------------------------------------------------------------------------
+![DestinationPage](./screenshots/splorin-destination-page.png "DestinationPage")
 
 ## Technology Stack
 
 Front End: React Native
 
 State Management: Redux
+
+## Component Rundown
+
+The Splorin' app is very simple and moves the users through a chain of components taking in a small amount of information about their future trip with each component.
+
+##### Landing Page
+Page for user to enter their home airport where they will be traveling from and returning to for this vacation.
+
+##### Travel Dates Page
+Page for user to enter their travel dates for this desired vacation.
+
+##### Destination Page
+Page for user to look at an image of a potential travel destination and decide if they are interested in seeing how much it would cost to fly to this destination. They can also chose to view a small blurb about the destination from this view.
+
+##### Flight Information Page
+Page for user to see how much a flight to their desired destination would cost. They can click through, out of the app, to kiwi.com to immediately book their flight, or go back to the destination page to keep looking at other destinations.
 
 ## What's next for Splorin'?
 
