@@ -2,6 +2,8 @@
 
 Splorin' is a travel-inspiration mobile app. Decision paralysis is crippling when it comes to figuring out where to go on vacation when there are so many wonderful places to visit. Splorin' helps users realize how easy it is to access amazing destinations all around the world, and have fun doing it. Users simply enter their home airport and travel dates, and then start Splorin'. They will then be presented with images from some of the most breathtaking vacation destinations around the world. If a user is feeling inspired, all it takes is a swipe to the right and since the app is plugged into the Kiwi API, they will then see flight costs to their desired destination. On the other hand, if they aren't excited, they can simply left swipe and the app will bring up a new travel destination.
 
+##### Live Expo: https://expo.io/@gouldy/splorin
+
 ## Screenshots
 
 Landing Page:
