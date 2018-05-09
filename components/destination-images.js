@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ImageBackground, Alert } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, Alert, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements';
 import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
@@ -82,42 +82,51 @@ export class DestinationImages extends React.Component {
                 <ImageBackground style={styles.image} source={source} alt={description}>   
                     <View style={styles.contentContainer}>
                         <View style={styles.iconContainer}>
-                            <View style={styles.iconButtonGreen}>
+                            <TouchableHighlight 
+                                onPress={() => this.props.dispatch(toggleMoreInfo())}
+                                style={styles.iconButtonGreen}
+                            >
                                 <Icon
                                     name='info'
                                     type='entypo'
                                     color='#fefbf7'
-                                    size={30}
-                                    onPress={() => this.props.dispatch(toggleMoreInfo())}
+                                        size={25}
                                 />
-                            </View>
-                            <View style={styles.iconButtonPurple}>
+                            </TouchableHighlight>
+                            <TouchableHighlight 
+                                onPress={() => this.props.dispatch(restartSearch())}
+                                style={styles.iconButtonPurple}
+                            >
                                 <Icon
                                     name='home'
                                     color='#fefbf7'
-                                    size={30}
-                                    onPress={() => this.props.dispatch(restartSearch())}
+                                    size={25}
                                 />
-                            </View>
+                            </TouchableHighlight>
                         </View>
                         {info}
                         <View style={styles.iconContainer}>
-                            <View style={styles.iconButtonGreen}>
+                            <TouchableHighlight 
+                                onPress={() => this.props.dispatch(toggleMoreInfo())}
+                                style={styles.iconButtonGreen}
+                            >
                                 <Icon
                                     name='flight-takeoff'
                                     color='#fefbf7'
-                                    size={30}
-                                    onPress={() => this.searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
+                                    size={25}
+                                        onPress={() => this.searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
                                 />
-                            </View>
-                            <View style={styles.iconButtonPurple}>
+                            </TouchableHighlight>
+                            <TouchableHighlight 
+                                onPress={() => this.props.dispatch(displayNextDestinationImage())}
+                                style={styles.iconButtonPurple}
+                            >
                                 <Icon
                                     name='delete'
                                     color='#fefbf7'
-                                    size={30}
-                                    onPress={() => this.props.dispatch(displayNextDestinationImage())}
+                                    size={25}
                                 />
-                            </View>
+                            </TouchableHighlight>
                         </View>
                     </View>
                 </ImageBackground>
