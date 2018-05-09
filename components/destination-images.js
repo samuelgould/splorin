@@ -85,17 +85,19 @@ export class DestinationImages extends React.Component {
                             <TouchableHighlight 
                                 onPress={() => this.props.dispatch(toggleMoreInfo())}
                                 style={styles.iconButtonGreen}
+                                underlayColor='#C8C8CD'
                             >
                                 <Icon
                                     name='info'
                                     type='entypo'
                                     color='#fefbf7'
-                                        size={25}
+                                    size={25}
                                 />
                             </TouchableHighlight>
                             <TouchableHighlight 
                                 onPress={() => this.props.dispatch(restartSearch())}
                                 style={styles.iconButtonPurple}
+                                underlayColor='#C8C8CD'
                             >
                                 <Icon
                                     name='home'
@@ -109,6 +111,7 @@ export class DestinationImages extends React.Component {
                             <TouchableHighlight 
                                 onPress={() => this.props.dispatch(toggleMoreInfo())}
                                 style={styles.iconButtonGreen}
+                                underlayColor='#C8C8CD'
                             >
                                 <Icon
                                     name='flight-takeoff'
@@ -120,6 +123,7 @@ export class DestinationImages extends React.Component {
                             <TouchableHighlight 
                                 onPress={() => this.props.dispatch(displayNextDestinationImage())}
                                 style={styles.iconButtonPurple}
+                                underlayColor='#C8C8CD'
                             >
                                 <Icon
                                     name='delete'
@@ -166,7 +170,7 @@ const styles = StyleSheet.create({
             height: 1,
         },
         elevation: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     iconButtonPurple: {
         height: 50,
