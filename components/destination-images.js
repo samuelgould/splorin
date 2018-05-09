@@ -87,6 +87,7 @@ export class DestinationImages extends React.Component {
                                     name='info'
                                     type='entypo'
                                     color='#fefbf7'
+                                    size={30}
                                     onPress={() => this.props.dispatch(toggleMoreInfo())}
                                 />
                             </View>
@@ -94,6 +95,7 @@ export class DestinationImages extends React.Component {
                                 <Icon
                                     name='home'
                                     color='#fefbf7'
+                                    size={30}
                                     onPress={() => this.props.dispatch(restartSearch())}
                                 />
                             </View>
@@ -104,6 +106,7 @@ export class DestinationImages extends React.Component {
                                 <Icon
                                     name='flight-takeoff'
                                     color='#fefbf7'
+                                    size={30}
                                     onPress={() => this.searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
                                 />
                             </View>
@@ -111,6 +114,7 @@ export class DestinationImages extends React.Component {
                                 <Icon
                                     name='delete'
                                     color='#fefbf7'
+                                    size={30}
                                     onPress={() => this.props.dispatch(displayNextDestinationImage())}
                                 />
                             </View>
@@ -146,7 +150,7 @@ const styles = StyleSheet.create({
         borderRadius: '50%',
         backgroundColor: '#33CC99',
         shadowColor: 'black',
-        shadowOpacity: 0.5,
+        shadowOpacity: 0.7,
         shadowRadius: 10,
         shadowOffset: {
             width: 0,
@@ -163,7 +167,7 @@ const styles = StyleSheet.create({
         borderRadius: '50%',
         backgroundColor: '#8D4E85',
         shadowColor: 'black',
-        shadowOpacity: 0.5,
+        shadowOpacity: 0.7,
         shadowRadius: 10,
         shadowOffset: {
             width: 0,
