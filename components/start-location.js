@@ -43,7 +43,7 @@ export class StartLocation extends React.Component {
           <TextInput
             style={styles.textInput}
             onChangeText={code => this.updateAirportCode(code)}
-            placeholder='Home Airport Code (e.g. SFO)'
+            placeholder='Where From?'
             value={this.props.code}
           />     
           <Button
@@ -71,7 +71,10 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   textInput: {
-    height: 40, 
+    color: '#33CC99',
+    fontWeight: 'bold',
+    fontSize: 24,
+    height: 50, 
     borderColor: '#ccc', 
     borderWidth: 1,
     borderRadius: 8,

@@ -82,34 +82,38 @@ export class DestinationImages extends React.Component {
                 <ImageBackground style={styles.image} source={source} alt={description}>   
                     <View style={styles.contentContainer}>
                         <View style={styles.iconContainer}>
-                            <Icon
-                                reverse
-                                name='info'
-                                type='entypo'
-                                color='#33CC99'
-                                onPress={() => this.props.dispatch(toggleMoreInfo())}
-                            />
-                            <Icon
-                                reverse
-                                name='home'
-                                color='#8D4E85'
-                                onPress={() => this.props.dispatch(restartSearch())}
-                            />
+                            <View style={styles.iconButtonGreen}>
+                                <Icon
+                                    name='info'
+                                    type='entypo'
+                                    color='#fefbf7'
+                                    onPress={() => this.props.dispatch(toggleMoreInfo())}
+                                />
+                            </View>
+                            <View style={styles.iconButtonPurple}>
+                                <Icon
+                                    name='home'
+                                    color='#fefbf7'
+                                    onPress={() => this.props.dispatch(restartSearch())}
+                                />
+                            </View>
                         </View>
                         {info}
                         <View style={styles.iconContainer}>
-                            <Icon 
-                                reverse
-                                name='flight-takeoff'
-                                color='#33CC99'
-                                onPress={() => this.searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
-                            />
-                            <Icon 
-                                reverse
-                                name='delete'
-                                color='#8D4E85'
-                                onPress={() => this.props.dispatch(displayNextDestinationImage())}
-                            />
+                            <View style={styles.iconButtonGreen}>
+                                <Icon
+                                    name='flight-takeoff'
+                                    color='#fefbf7'
+                                    onPress={() => this.searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
+                                />
+                            </View>
+                            <View style={styles.iconButtonPurple}>
+                                <Icon
+                                    name='delete'
+                                    color='#fefbf7'
+                                    onPress={() => this.props.dispatch(displayNextDestinationImage())}
+                                />
+                            </View>
                         </View>
                     </View>
                 </ImageBackground>
@@ -133,6 +137,40 @@ const styles = StyleSheet.create({
     iconContainer: {
         flexDirection: 'row-reverse',
         justifyContent: 'space-between'
+    },
+    iconButtonGreen: {
+        height: 50,
+        width: 50,
+        marginTop: 30,
+        marginBottom: 30,
+        borderRadius: '50%',
+        backgroundColor: '#33CC99',
+        shadowColor: 'black',
+        shadowOpacity: 0.5,
+        shadowRadius: 10,
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        elevation: 1,
+        justifyContent: 'center'
+    },
+    iconButtonPurple: {
+        height: 50,
+        width: 50,
+        marginTop: 30,
+        marginBottom: 30,
+        borderRadius: '50%',
+        backgroundColor: '#8D4E85',
+        shadowColor: 'black',
+        shadowOpacity: 0.5,
+        shadowRadius: 10,
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        elevation: 1,
+        justifyContent: 'center'
     },
     header: {
         color: '#33CC99',
