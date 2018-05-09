@@ -7,19 +7,34 @@ import { storeDepartureAirport, submitDepartureAirport } from '../actions/flight
 export class StartLocation extends React.Component {
 
   submitDepartureAirport() {
-    if (this.props.code !== null) {
-        this.props.dispatch(submitDepartureAirport())
+    if (this.props.code !== null && this.props.code.length === 3) {
+      this.props.dispatch(submitDepartureAirport())
     } else {
         Alert.alert(
             'Not so fast...',
-            'We need to know where you are starting this adventure.',
+            'We need to know where you are starting this adventure. That means entering a 3 letter airport code of your home airport.',
             [
               {text: 'OK', onPress: () => console.log('OK Pressed')},
             ],
             { cancelable: false }
         )
     }
-}
+  }
+
+  updateAirportCode(code) {
+    if (/^[a-zA-Z]+$/.test(code) || code === '') {
+      this.props.dispatch(storeDepartureAirport(code.toUpperCase()))
+    } else {
+      Alert.alert(
+        'Whoops...',
+        'Airport codes only contain letters. Let\'s try that again.',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        { cancelable: false }
+    )
+    }
+  }
 
   render() {
     return (
@@ -27,7 +42,7 @@ export class StartLocation extends React.Component {
         <View>
           <TextInput
             style={styles.textInput}
-            onChangeText={code => this.props.dispatch(storeDepartureAirport(code))}
+            onChangeText={code => this.updateAirportCode(code)}
             placeholder='Home Airport Code (e.g. SFO)'
             value={this.props.code}
           />     
