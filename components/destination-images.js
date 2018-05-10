@@ -1,11 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet, ImageBackground, Alert, TouchableHighlight } from 'react-native';
+import { StyleSheet, Alert } from 'react-native';
 import { connect } from 'react-redux';
-import { Icon } from 'react-native-elements';
-import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
 import SwipeCards from 'react-native-swipe-cards';
+import Swiper from 'react-native-deck-swiper';
 import Card from './destination-card';
-import { searchFlight, displayNextDestinationImage, restartSearch, toggleMoreInfo } from '../actions/flight';
+import { searchFlight, displayNextDestinationImage, toggleMoreInfo } from '../actions/flight';
 
 export class DestinationImages extends React.Component {
     searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear) {
@@ -25,8 +24,6 @@ export class DestinationImages extends React.Component {
 
     render() {
         let { code, startDate, endDate, destinationImages } = this.props;
-
-        const { airport } = destinationImages[0];
         
         startDate = new Date(startDate);
         startDay = startDate.getDate();
@@ -43,12 +40,35 @@ export class DestinationImages extends React.Component {
                 cards={destinationImages}
                 renderCard={cardData => <Card {...cardData} />}
 
-                handleYup={() => this.searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
-                handleNope={() => this.props.dispatch(displayNextDestinationImage())}
+                handleYup={card => this.searchFlight(code, card.airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
+                // handleNope={() => this.props.dispatch(displayNextDestinationImage())}
+
+                yupStyle={styles.yup}
+                nopeStyle={styles.nope}
+
+                cardKey={4}
+
+                smoothTransition={false}
+
+                cardRemoved={index=>console.log(index)}
+
+                onClickHandler={()=>this.props.dispatch(toggleMoreInfo())}
             />
         )
     }
 }
+
+const styles = StyleSheet.create({
+    yup: {
+        textAlign: 'center',
+        margin: 'auto',
+        alignItems: 'center'
+    },
+    nope: {
+        flex: 1,
+        justifyContent: 'center'
+    }
+});
 
 const mapStateToProps = state => ({
     code: state.code,
