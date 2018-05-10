@@ -9,9 +9,9 @@ import { searchFlight, displayNextDestinationImage, restartSearch, toggleMoreInf
 export class Card extends React.Component {
 
     render() {
-        let { code, startDate, endDate, destinationImages, moreInfo } = this.props;
+        let { code, startDate, endDate, moreInfo } = this.props;
 
-        const { source, description, airport, attraction, location, why } = destinationImages[0];
+        const { source, description, airport, attraction, location, why } = this.props;
         
         startDate = new Date(startDate);
         startDay = startDate.getDate();
@@ -167,14 +167,13 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 1
     }
-  });
+});
   
 
 const mapStateToProps = state => ({
     code: state.code,
     startDate: state.startDate,
     endDate: state.endDate,
-    destinationImages: state.destinationImages,
     moreInfo: state.moreInfo    
 })
 
