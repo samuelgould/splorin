@@ -84,7 +84,7 @@ export class DestinationImages extends React.Component {
                         <View style={styles.iconContainer}>
                             <TouchableHighlight 
                                 onPress={() => this.props.dispatch(toggleMoreInfo())}
-                                style={styles.iconButtonGreen}
+                                style={[styles.iconButton, styles.greenButton]}
                                 underlayColor='#C8C8CD'
                             >
                                 <Icon
@@ -96,7 +96,7 @@ export class DestinationImages extends React.Component {
                             </TouchableHighlight>
                             <TouchableHighlight 
                                 onPress={() => this.props.dispatch(restartSearch())}
-                                style={styles.iconButtonPurple}
+                                style={[styles.iconButton, styles.purpleButton]}
                                 underlayColor='#C8C8CD'
                             >
                                 <Icon
@@ -110,7 +110,7 @@ export class DestinationImages extends React.Component {
                         <View style={styles.iconContainer}>
                             <TouchableHighlight 
                                 onPress={() => this.props.dispatch(toggleMoreInfo())}
-                                style={styles.iconButtonGreen}
+                                style={[styles.iconButton, styles.greenButton]}
                                 underlayColor='#C8C8CD'
                             >
                                 <Icon
@@ -122,7 +122,7 @@ export class DestinationImages extends React.Component {
                             </TouchableHighlight>
                             <TouchableHighlight 
                                 onPress={() => this.props.dispatch(displayNextDestinationImage())}
-                                style={styles.iconButtonPurple}
+                                style={[styles.iconButton, styles.purpleButton]}
                                 underlayColor='#C8C8CD'
                             >
                                 <Icon
@@ -155,13 +155,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row-reverse',
         justifyContent: 'space-between'
     },
-    iconButtonGreen: {
+    iconButton: {
         height: 50,
         width: 50,
         marginTop: 30,
         marginBottom: 30,
         borderRadius: '50%',
-        backgroundColor: '#33CC99',
         shadowColor: 'black',
         shadowOpacity: 0.7,
         shadowRadius: 10,
@@ -172,22 +171,11 @@ const styles = StyleSheet.create({
         elevation: 1,
         justifyContent: 'center',
     },
-    iconButtonPurple: {
-        height: 50,
-        width: 50,
-        marginTop: 30,
-        marginBottom: 30,
-        borderRadius: '50%',
-        backgroundColor: '#8D4E85',
-        shadowColor: 'black',
-        shadowOpacity: 0.7,
-        shadowRadius: 10,
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        elevation: 1,
-        justifyContent: 'center'
+    greenButton: {
+        backgroundColor: '#33CC99'
+    },
+    purpleButton: {
+        backgroundColor: '#8D4E85'
     },
     header: {
         color: '#33CC99',
