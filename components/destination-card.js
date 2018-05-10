@@ -4,74 +4,29 @@ import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements';
 import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
 import SwipeCards from 'react-native-swipe-cards';
-import Card from './destination-card';
 import { searchFlight, displayNextDestinationImage, restartSearch, toggleMoreInfo } from '../actions/flight';
 
-export class DestinationImages extends React.Component {
-    onSwipe(gestureName, code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear) {
-        const { SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT } = swipeDirections;
-        switch (gestureName) {
-            case SWIPE_UP:
-                this.props.dispatch(toggleMoreInfo());
-                break;
-            case SWIPE_DOWN:
-                this.props.dispatch(toggleMoreInfo());
-                break;
-            case SWIPE_LEFT:
-                this.props.dispatch(displayNextDestinationImage());
-                break;
-            case SWIPE_RIGHT:
-                this.searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear);
-                break;
-        }
-    }
-
-    searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear) {
-        if (code !== airport) {
-            this.props.dispatch(searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear))
-        } else {
-            Alert.alert(
-                'Whoops...',
-                'Seems like you want to visit your own city. Maybe you should stop playing with us and start splorin\'.',
-                [
-                  {text: 'OK', onPress: () => console.log('OK Pressed')},
-                ],
-                { cancelable: false }
-            )
-        }
-    }
-
-    handleYup() {
-        console.log('yup');
-    }
-
-    handleNope() {
-        console.log('nope');
-    }
-
-    handleMaybe() {
-        console.log('maybe');
-    }
+export class Card extends React.Component {
 
     render() {
         let { code, startDate, endDate, destinationImages, moreInfo } = this.props;
 
         const { source, description, airport, attraction, location, why } = destinationImages[0];
         
-        startDate = new Date(startDate);
-        startDay = startDate.getDate();
-        startMonth = startDate.getMonth() + 1;
-        startYear = startDate.getFullYear();
+        // startDate = new Date(startDate);
+        // startDay = startDate.getDate();
+        // startMonth = startDate.getMonth() + 1;
+        // startYear = startDate.getFullYear();
 
-        endDate = new Date(endDate);
-        endDay = endDate.getDate();
-        endMonth = endDate.getMonth() + 1;
-        endYear = endDate.getFullYear();
+        // endDate = new Date(endDate);
+        // endDay = endDate.getDate();
+        // endMonth = endDate.getMonth() + 1;
+        // endYear = endDate.getFullYear();
 
-        const config = {
-            velocityThreshold: 0.3,
-            directionalOffsetThreshold: 80
-        };
+        // const config = {
+        //     velocityThreshold: 0.3,
+        //     directionalOffsetThreshold: 80
+        // };
 
         let info;
 
@@ -86,15 +41,8 @@ export class DestinationImages extends React.Component {
         };
 
         return (
-            <SwipeCards
-                cards={destinationImages}
-                renderCard={cardData => <Card {...cardData} />}
-
-                handleYup={this.handleYup}
-                handleNope={this.handleNope}
-                handleMaybe={this.handleMaybe}
-                hasMaybeAction
-                /* <ImageBackground style={styles.image} source={source} alt={description}>   
+            <View>    
+                <ImageBackground style={styles.image} source={source} alt={description}>   
                     <View style={styles.contentContainer}>
                         <View style={styles.iconContainer}>
                             <TouchableHighlight 
@@ -149,8 +97,7 @@ export class DestinationImages extends React.Component {
                         </View>
                     </View>
                 </ImageBackground>
-            </SwipeCards> */
-            />
+            </View>
         )
     }
 }
@@ -236,4 +183,4 @@ const mapStateToProps = state => ({
     moreInfo: state.moreInfo    
 })
 
-export default connect(mapStateToProps)(DestinationImages);
+export default connect(mapStateToProps)(Card);
