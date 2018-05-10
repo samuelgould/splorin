@@ -13,20 +13,15 @@ export class Card extends React.Component {
 
         const { source, description, airport, attraction, location, why } = destinationImages[0];
         
-        // startDate = new Date(startDate);
-        // startDay = startDate.getDate();
-        // startMonth = startDate.getMonth() + 1;
-        // startYear = startDate.getFullYear();
+        startDate = new Date(startDate);
+        startDay = startDate.getDate();
+        startMonth = startDate.getMonth() + 1;
+        startYear = startDate.getFullYear();
 
-        // endDate = new Date(endDate);
-        // endDay = endDate.getDate();
-        // endMonth = endDate.getMonth() + 1;
-        // endYear = endDate.getFullYear();
-
-        // const config = {
-        //     velocityThreshold: 0.3,
-        //     directionalOffsetThreshold: 80
-        // };
+        endDate = new Date(endDate);
+        endDay = endDate.getDate();
+        endMonth = endDate.getMonth() + 1;
+        endYear = endDate.getFullYear();
 
         let info;
 
