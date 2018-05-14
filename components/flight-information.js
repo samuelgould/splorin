@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text, Image, Linking } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, PricingCard } from 'react-native-elements';
+import { Spinner } from 'native-base';
 import { nextDestinationImage, displayCurrentDestinationImage, searchFlightWithNoRestrictions } from '../actions/flight';
 
 export class FlightInformation extends React.Component {  
@@ -15,6 +16,7 @@ export class FlightInformation extends React.Component {
             <View style={styles.loadingContainer}>
                 <Image source={require('../images/dinoSplorinLogo.png')} alt='Splorin Logo with Dino and Backpack only' style={styles.logoDino}/>
                 <Text style={styles.loading}>Loading...</Text>
+                <Spinner color='#33CC99'/>
             </View>
         );
 

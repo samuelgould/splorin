@@ -5,9 +5,9 @@ import SwipeCards from 'react-native-swipe-cards';
 import Swiper from 'react-native-deck-swiper';
 import { View, DeckSwiper, Card, CardItem } from 'native-base';
 import DestinationCard from './destination-card';
-import { searchFlight, displayNextDestinationImage, toggleMoreInfo } from '../actions/flight';
+import { searchFlight, displayNextDestinationImage } from '../actions/flight';
 
-export class DestinationImages extends React.Component {
+export class DestinationViewport extends React.Component {
     searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear) {
         if (code !== airport) {
             this.props.dispatch(searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear))
@@ -53,6 +53,7 @@ export class DestinationImages extends React.Component {
                 looping={true}
 
                 onSwipeRight={destination => this.searchFlight(code, destination.airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
+                onSwipeLeft={() => this.props.dispatch(displayNextDestinationImage())}
             />
         )
     }
@@ -74,7 +75,7 @@ const mapStateToProps = state => ({
     code: state.code,
     startDate: state.startDate,
     endDate: state.endDate,
-    destinationImages: state.destinationImages,  
+    DestinationImages: state.destinationImages,  
 })
 
-export default connect(mapStateToProps)(DestinationImages);
+export default connect(mapStateToProps)(DestinationViewport);
