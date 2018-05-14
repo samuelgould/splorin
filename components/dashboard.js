@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { connect } from 'react-redux';
 import StartLocation from './start-location';
 import PickDates from './pick-dates';
-import DestinationImages from './destination-images';
+import DestinationViewport from './destination-viewport';
 import FlightInformation from './flight-information';
 
 export class Dashboard extends React.Component {
@@ -11,7 +11,7 @@ export class Dashboard extends React.Component {
   render() {
     let startLocation;
     let pickDates;
-    let destinationImages;
+    let destinationViewport;
     let flightInformation;
     
     if (this.props.startLocation) {
@@ -26,9 +26,9 @@ export class Dashboard extends React.Component {
       )
     }
 
-    if (this.props.destinationImages) {
-      destinationImages = (
-        <DestinationImages />
+    if (this.props.destinationViewport) {
+      destinationViewport = (
+        <DestinationViewport />
       )
     }
 
@@ -42,7 +42,7 @@ export class Dashboard extends React.Component {
       <View>
         {startLocation}
         {pickDates}
-        {destinationImages}
+        {destinationViewport}
         {flightInformation}
       </View>
     )
@@ -52,7 +52,7 @@ export class Dashboard extends React.Component {
 const mapStateToProps = state => ({
   startLocation: state.startLocationView,
   pickDates: state.pickDatesView,
-  destinationImages: state.destinationImagesView,
+  destinationViewport: state.destinationImagesView,
   flightInformation: state.flightInformationView
 })
 
