@@ -3,7 +3,8 @@ import { StyleSheet, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import SwipeCards from 'react-native-swipe-cards';
 import Swiper from 'react-native-deck-swiper';
-import Card from './destination-card';
+import { View, DeckSwiper, Card, CardItem } from 'native-base';
+import DestinationCard from './destination-card';
 import { searchFlight, displayNextDestinationImage, toggleMoreInfo } from '../actions/flight';
 
 export class DestinationImages extends React.Component {
@@ -24,7 +25,7 @@ export class DestinationImages extends React.Component {
 
     render() {
         let { code, startDate, endDate, destinationImages } = this.props;
-        
+
         startDate = new Date(startDate);
         startDay = startDate.getDate();
         startMonth = startDate.getMonth() + 1;
@@ -35,24 +36,23 @@ export class DestinationImages extends React.Component {
         endMonth = endDate.getMonth() + 1;
         endYear = endDate.getFullYear();
 
+
+
         return (
-            <SwipeCards
-                cards={destinationImages}
-                renderCard={cardData => <Card {...cardData} />}
+            <DeckSwiper
+                ref={c => this._deckSwiper = c} 
+                dataSource={destinationImages}
+                renderItem={destination =>
+                    <Card>
+                        <CardItem cardBody>
+                            <DestinationCard content={destination} />
+                        </CardItem>
+                    </Card>
+                }
 
-                handleYup={card => this.searchFlight(code, card.airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
-                // handleNope={() => this.props.dispatch(displayNextDestinationImage())}
+                looping={true}
 
-                yupStyle={styles.yup}
-                nopeStyle={styles.nope}
-
-                cardKey={4}
-
-                smoothTransition={false}
-
-                cardRemoved={index=>console.log(index)}
-
-                onClickHandler={()=>this.props.dispatch(toggleMoreInfo())}
+                onSwipeRight={destination => this.searchFlight(code, destination.airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
             />
         )
     }
