@@ -2,16 +2,14 @@ import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, Alert, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements';
-import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
-import SwipeCards from 'react-native-swipe-cards';
 import { searchFlight, displayNextDestinationImage, restartSearch, toggleMoreInfo } from '../actions/flight';
 
-export class Card extends React.Component {
+export class DestinationCard extends React.Component {
 
     render() {
         let { code, startDate, endDate, moreInfo } = this.props;
 
-        const { source, description, airport, attraction, location, why } = this.props;
+        const { source, description, airport, attraction, location, why } = this.props.content;
         
         startDate = new Date(startDate);
         startDay = startDate.getDate();
@@ -177,4 +175,4 @@ const mapStateToProps = state => ({
     moreInfo: state.moreInfo    
 })
 
-export default connect(mapStateToProps)(Card);
+export default connect(mapStateToProps)(DestinationCard);
