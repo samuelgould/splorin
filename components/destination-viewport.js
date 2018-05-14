@@ -2,8 +2,6 @@ import React from 'react';
 import { StyleSheet, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import SwipeCards from 'react-native-swipe-cards';
-import Swiper from 'react-native-deck-swiper';
-import { View, DeckSwiper, Card, CardItem } from 'native-base';
 import DestinationCard from './destination-card';
 import { searchFlight, displayNextDestinationImage } from '../actions/flight';
 

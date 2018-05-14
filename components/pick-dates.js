@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity, Image, TextInput, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon } from 'react-native-elements';
 import CalendarPicker from 'react-native-calendar-picker';
@@ -36,6 +36,9 @@ export class PickDates extends React.Component {
         return (
           <View style={styles.container}>
             <View>
+                <Text style={styles.header}>
+                    When Can You Go Splorin'?
+                </Text>
                 <CalendarPicker
                     allowRangeSelection={true}
                     minDate={minDate}
@@ -66,6 +69,13 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-around',
         marginTop: 15
+    },
+    header: {
+        fontWeight: 'bold',
+        fontSize: 24,
+        color: '#33CC99',
+        textAlign: 'center',
+        marginBottom: 30
     },
     button: {
         shadowColor: 'black',
