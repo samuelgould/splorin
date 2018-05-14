@@ -48,19 +48,35 @@ export class DestinationViewport extends React.Component {
                 handleYup={destination => this.searchFlight(code, destination.airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
                 handleNope={() => this.props.dispatch(displayNextDestinationImage())}
 
-                nopeTextStyle={styles.nope}
+                yupTextStyle={styles.text}
+                yupStyle={styles.yup}
+
+                nopeTextStyle={styles.text}
+                nopeStyle={styles.nope}
             />
         )
     }
 }
 
 const styles = StyleSheet.create({
-    nope: {
-        color: 'purple'
+    text: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 36
     },
     nope: {
-        flex: 1,
-        justifyContent: 'center'
+        backgroundColor: '#8D4E85',
+        marginBottom: 200,
+        marginLeft: 125,
+        borderRadius: 8,
+        borderColor: '#8D4E85'
+    },
+    yup: {
+        backgroundColor: '#33CC99',
+        marginBottom: 200,
+        marginRight: 125,
+        borderRadius: 8,
+        borderColor: '#33CC99'
     }
 });
 
