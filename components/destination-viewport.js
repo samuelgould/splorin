@@ -39,31 +39,24 @@ export class DestinationViewport extends React.Component {
 
 
         return (
-            <DeckSwiper
-                ref={c => this._deckSwiper = c} 
-                dataSource={destinationImages}
-                renderItem={destination =>
-                    <Card>
-                        <CardItem cardBody>
-                            <DestinationCard content={destination} />
-                        </CardItem>
-                    </Card>
-                }
+            <SwipeCards
+                cards={destinationImages}
+                renderCard={destination => <DestinationCard {...destination} />}
 
-                looping={true}
+                showSecondCard={true}
 
-                onSwipeRight={destination => this.searchFlight(code, destination.airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
-                onSwipeLeft={() => this.props.dispatch(displayNextDestinationImage())}
+                handleYup={destination => this.searchFlight(code, destination.airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
+                handleNope={() => this.props.dispatch(displayNextDestinationImage())}
+
+                nopeTextStyle={styles.nope}
             />
         )
     }
 }
 
 const styles = StyleSheet.create({
-    yup: {
-        textAlign: 'center',
-        margin: 'auto',
-        alignItems: 'center'
+    nope: {
+        color: 'purple'
     },
     nope: {
         flex: 1,
@@ -75,7 +68,7 @@ const mapStateToProps = state => ({
     code: state.code,
     startDate: state.startDate,
     endDate: state.endDate,
-    DestinationImages: state.destinationImages,  
+    destinationImages: state.destinationImages,  
 })
 
 export default connect(mapStateToProps)(DestinationViewport);

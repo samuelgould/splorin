@@ -9,7 +9,7 @@ export class DestinationCard extends React.Component {
     render() {
         let { code, startDate, endDate, moreInfo } = this.props;
 
-        const { source, description, airport, attraction, location, why } = this.props.content;
+        const { source, description, airport, attraction, location, why } = this.props;
         
         startDate = new Date(startDate);
         startDay = startDate.getDate();
