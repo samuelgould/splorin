@@ -4,6 +4,7 @@ import {
     STORE_START_DATE,
     STORE_END_DATE,
     SUBMIT_TRAVEL_DATES,
+    STORE_CURRENT_INDEX,
     SEARCH_FLIGHT_REQUEST,
     SEARCH_FLIGHT_SUCCESS,
     SEARCH_FLIGHT_ERROR,
@@ -11,8 +12,7 @@ import {
     DISPLAY_NEXT_DESTINATION_IMAGE,
     DISPLAY_CURRENT_DESTINATION_IMAGE,
     TOGGLE_MORE_INFO,
-    RESTART_SEARCH,
-    STORE_CURRENT_INDEX
+    RESTART_SEARCH
 } from '../actions/flight';
 
 const initialState = { 
@@ -150,7 +150,8 @@ export const reducer = (state = initialState, action) => {
             destination: action.destination,
             location: action.location,
             attraction: action.attraction,
-            why: action.why
+            why: action.why,
+            destinationImages: [...state.destinationImages.slice(action.currentIndex+1), state.destinationImages[action.currentIndex]]
 		})
 	} else if (action.type === SEARCH_FLIGHT_SUCCESS) {
 		return Object.assign({}, state, {

@@ -7,7 +7,7 @@ import { searchFlight, displayNextDestinationImage, storeCurrentIndex } from '..
 import FlightInformation from './flight-information';
 
 export class DestinationViewport extends React.Component {
-    searchFlight(index, departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why, currentIndex) {
+    searchFlight(departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why, currentIndex) {
         if (departure !== destination) {
             this.props.dispatch(searchFlight(departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why, currentIndex))
         } else {

@@ -5,9 +5,9 @@ import { Icon } from 'react-native-elements';
 import { searchFlight, displayNextDestinationImage, restartSearch, toggleMoreInfo } from '../actions/flight';
 
 export class DestinationCard extends React.Component {
-    searchFlight(departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why) {
+    searchFlight(departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why, currentIndex) {
         if (departure !== destination) {
-            this.props.dispatch(searchFlight(departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why))
+            this.props.dispatch(searchFlight(departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why, currentIndex));
         } else {
             Alert.alert(
                 'Whoops...',
@@ -21,7 +21,7 @@ export class DestinationCard extends React.Component {
     }
 
     render() {
-        let { code, startDate, endDate, moreInfo, source, description, airport, attraction, location, why } = this.props;
+        let { code, startDate, endDate, moreInfo, source, description, airport, attraction, location, why, currentIndex } = this.props;
         
         startDate = new Date(startDate);
         startDay = startDate.getDate();
@@ -85,7 +85,7 @@ export class DestinationCard extends React.Component {
                                     name='flight-takeoff'
                                     color='#fefbf7'
                                     size={25}
-                                    onPress={() => this.searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why)}
+                                    onPress={() => this.searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why, currentIndex)}
                                 />
                             </TouchableHighlight>
                             <TouchableHighlight 
@@ -186,7 +186,8 @@ const mapStateToProps = state => ({
     code: state.code,
     startDate: state.startDate,
     endDate: state.endDate,
-    moreInfo: state.moreInfo    
+    moreInfo: state.moreInfo,
+    currentIndex: state.currentIndex    
 })
 
 export default connect(mapStateToProps)(DestinationCard);
