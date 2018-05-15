@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import SwipeCards from 'react-native-swipe-cards';
 import DestinationCard from './destination-card';
 import { searchFlight, storeCurrentIndex } from '../actions/flight';
-import FlightInformation from './flight-information';
 
 export class DestinationViewport extends React.Component {
     searchFlight(departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why, currentIndex) {
@@ -51,6 +50,7 @@ export class DestinationViewport extends React.Component {
                 handleYup={destination => this.searchFlight(code, destination.airport, startDay, startMonth, startYear, endDay, endMonth, endYear, destination.location, destination.attraction, destination.why, currentIndex)}
 
                 cardRemoved={this.cardRemoved.bind(this)}
+
                 yupTextStyle={styles.text}
                 yupStyle={styles.yup}
 
