@@ -3,12 +3,13 @@ import { StyleSheet, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import SwipeCards from 'react-native-swipe-cards';
 import DestinationCard from './destination-card';
-import { searchFlight, displayNextDestinationImage } from '../actions/flight';
+import { searchFlight, displayNextDestinationImage, storeCurrentIndex } from '../actions/flight';
+import FlightInformation from './flight-information';
 
 export class DestinationViewport extends React.Component {
-    searchFlight(departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why) {
+    searchFlight(index, departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why, currentIndex) {
         if (departure !== destination) {
-            this.props.dispatch(searchFlight(departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why))
+            this.props.dispatch(searchFlight(departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why, currentIndex))
         } else {
             Alert.alert(
                 'Whoops...',
@@ -21,8 +22,12 @@ export class DestinationViewport extends React.Component {
         }
     }
 
+    cardRemoved (index) {
+        this.props.dispatch(storeCurrentIndex(index));
+    }
+
     render() {
-        let { code, startDate, endDate, destinationImages } = this.props;
+        let { code, startDate, endDate, destinationImages, currentIndex } = this.props;
 
         startDate = new Date(startDate);
         startDay = startDate.getDate();
@@ -43,9 +48,10 @@ export class DestinationViewport extends React.Component {
 
                 loop={true}
 
-                handleYup={destination => this.searchFlight(code, destination.airport, startDay, startMonth, startYear, endDay, endMonth, endYear, destination.location, destination.attraction, destination.why)}
+                handleYup={destination => this.searchFlight(code, destination.airport, startDay, startMonth, startYear, endDay, endMonth, endYear, destination.location, destination.attraction, destination.why, currentIndex)}
                 // handleNope={() => this.props.dispatch(displayNextDestinationImage())}
 
+                cardRemoved={this.cardRemoved.bind(this)}
                 yupTextStyle={styles.text}
                 yupStyle={styles.yup}
 
@@ -82,7 +88,8 @@ const mapStateToProps = state => ({
     code: state.code,
     startDate: state.startDate,
     endDate: state.endDate,
-    destinationImages: state.destinationImages,  
+    destinationImages: state.destinationImages,
+    currentIndex: state.currentIndex
 })
 
 export default connect(mapStateToProps)(DestinationViewport);

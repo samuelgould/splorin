@@ -11,7 +11,8 @@ import {
     DISPLAY_NEXT_DESTINATION_IMAGE,
     DISPLAY_CURRENT_DESTINATION_IMAGE,
     TOGGLE_MORE_INFO,
-    RESTART_SEARCH
+    RESTART_SEARCH,
+    STORE_CURRENT_INDEX
 } from '../actions/flight';
 
 const initialState = { 
@@ -24,6 +25,7 @@ const initialState = {
     endDate: null,
     destination: null,
     moreInfo: false,
+    currentIndex: 0,
     loading: false,
     error: null,
     flight: null,
@@ -124,7 +126,11 @@ export const reducer = (state = initialState, action) => {
             pickDatesView: false,
             destinationImagesView: true
         })
-    } else if (action.type === DISPLAY_NEXT_DESTINATION_IMAGE) {
+    } else if (action.type === STORE_CURRENT_INDEX) {
+		return Object.assign({}, state, {
+			currentIndex: action.currentIndex
+		})
+	} else if (action.type === DISPLAY_NEXT_DESTINATION_IMAGE) {
         return Object.assign({}, state, {
             moreInfo: false,
             destinationImages: [...state.destinationImages.slice(1), state.destinationImages[0]]
