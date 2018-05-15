@@ -26,6 +26,12 @@ export const submitTravelDates = () => ({
   type: SUBMIT_TRAVEL_DATES
 });
 
+export const STORE_CURRENT_INDEX = 'STORE_CURRENT_INDEX';
+export const storeCurrentIndex = currentIndex => ({
+  type: STORE_CURRENT_INDEX,
+  currentIndex
+});
+
 export const DISPLAY_NEXT_DESTINATION_IMAGE = 'DISPLAY_NEXT_DESTINATION_IMAGE';
 export const displayNextDestinationImage = () => ({
   type: DISPLAY_NEXT_DESTINATION_IMAGE
