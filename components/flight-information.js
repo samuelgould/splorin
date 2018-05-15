@@ -8,9 +8,7 @@ import { nextDestinationImage, displayCurrentDestinationImage, searchFlightWithN
 export class FlightInformation extends React.Component {  
     render() {
         
-        let { code, startDate, endDate, flight, loading, destinationImages, noRestrictionsFail } = this.props;
-        
-        const { destination, location, attraction, why } = this.props;
+        let { code, startDate, endDate, flight, loading, destinationImages, noRestrictionsFail, destination, location, attraction, why } = this.props;
 
         let display = (
             <View style={styles.loadingContainer}>
