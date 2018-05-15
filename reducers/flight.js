@@ -133,7 +133,7 @@ export const reducer = (state = initialState, action) => {
 	} else if (action.type === DISPLAY_NEXT_DESTINATION_IMAGE) {
         return Object.assign({}, state, {
             moreInfo: false,
-            destinationImages: [...state.destinationImages.slice(1), state.destinationImages[0]]
+            destinationImages: [...state.destinationImages.slice(action.currentIndex+2), ...state.destinationImages.slice(0, action.currentIndex+2)]
         })
     } else if (action.type === DISPLAY_CURRENT_DESTINATION_IMAGE) {
         return Object.assign({}, state, {
@@ -151,7 +151,7 @@ export const reducer = (state = initialState, action) => {
             location: action.location,
             attraction: action.attraction,
             why: action.why,
-            destinationImages: [...state.destinationImages.slice(action.currentIndex+1), state.destinationImages[action.currentIndex]]
+            destinationImages: [...state.destinationImages.slice(action.currentIndex+1), ...state.destinationImages.slice(0, action.currentIndex+1)]
 		})
 	} else if (action.type === SEARCH_FLIGHT_SUCCESS) {
 		return Object.assign({}, state, {
