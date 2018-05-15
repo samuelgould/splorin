@@ -28,6 +28,10 @@ const initialState = {
     error: null,
     flight: null,
     noRestrictionsFail: false,
+    destination: null,
+    location: null,
+    attraction: null,
+    why: null,
     destinationImages: [
         {
             source: {uri: 'https://i.imgur.com/Y6qMZTX.jpg'},
@@ -136,7 +140,11 @@ export const reducer = (state = initialState, action) => {
 		return Object.assign({}, state, {
             loading: true,
             destinationImagesView: false,
-            flightInformationView: true
+            flightInformationView: true,
+            destination: action.destination,
+            location: action.location,
+            attraction: action.attraction,
+            why: action.why
 		})
 	} else if (action.type === SEARCH_FLIGHT_SUCCESS) {
 		return Object.assign({}, state, {

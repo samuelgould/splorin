@@ -6,9 +6,9 @@ import DestinationCard from './destination-card';
 import { searchFlight, displayNextDestinationImage } from '../actions/flight';
 
 export class DestinationViewport extends React.Component {
-    searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear) {
-        if (code !== airport) {
-            this.props.dispatch(searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear))
+    searchFlight(departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why) {
+        if (departure !== destination) {
+            this.props.dispatch(searchFlight(departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why))
         } else {
             Alert.alert(
                 'Whoops...',

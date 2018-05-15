@@ -5,6 +5,20 @@ import { Icon } from 'react-native-elements';
 import { searchFlight, displayNextDestinationImage, restartSearch, toggleMoreInfo } from '../actions/flight';
 
 export class DestinationCard extends React.Component {
+    searchFlight(departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why) {
+        if (departure !== destination) {
+            this.props.dispatch(searchFlight(departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why))
+        } else {
+            Alert.alert(
+                'Whoops...',
+                'Seems like you want to visit your own city. Maybe you should stop playing with us and start splorin\'.',
+                [
+                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+            )
+        }
+    }
 
     render() {
         let { code, startDate, endDate, moreInfo, source, description, airport, attraction, location, why } = this.props;

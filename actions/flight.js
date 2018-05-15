@@ -37,8 +37,12 @@ export const displayCurrentDestinationImage = () => ({
 });
 
 export const SEARCH_FLIGHT_REQUEST = 'SEARCH_FLIGHT_REQUEST';
-export const searchFlightRequest = () => ({
-  type: SEARCH_FLIGHT_REQUEST
+export const searchFlightRequest = (destination, location, attraction, why) => ({
+  type: SEARCH_FLIGHT_REQUEST,
+  destination,
+  location,
+  attraction,
+  why
 });
 
 export const SEARCH_FLIGHT_SUCCESS = 'SEARCH_FLIGHT_SUCCESS';

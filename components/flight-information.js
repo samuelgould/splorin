@@ -10,7 +10,7 @@ export class FlightInformation extends React.Component {
         
         let { code, startDate, endDate, flight, loading, destinationImages, noRestrictionsFail } = this.props;
         
-        const { airport, location, attraction, why } = destinationImages[0];
+        const { destination, location, attraction, why } = this.props;
 
         let display = (
             <View style={styles.loadingContainer}>
@@ -77,7 +77,7 @@ export class FlightInformation extends React.Component {
                     <View style={styles.whoopsContainer}>
                         <Text style={styles.whoops}>Whoops...looks like we can't find a reasonable flight for you. We restrict ourselves to only showing itineraries with 2 stops or fewer, because any more than that feels excessive to us. Would you like us to see if there are any possible flight options?</Text>
                         <Button
-                            onPress={() => this.props.dispatch(searchFlightWithNoRestrictions(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear))}
+                            onPress={() => this.props.dispatch(searchFlightWithNoRestrictions(code, destination, startDay, startMonth, startYear, endDay, endMonth, endYear))}
                             title="Show Me ANYTHING"
                             backgroundColor='#33CC99'
                             fontWeight='bold'
@@ -193,7 +193,7 @@ const mapStateToProps = state => ({
     endDate: state.endDate,
     code: state.code,
     noRestrictionsFail: state.noRestrictionsFail,
-    airport: state.destination,
+    destination: state.destination,
     location: state.location,
     attraction: state.attraction,
     why: state.why
