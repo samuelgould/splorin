@@ -160,8 +160,7 @@ export const reducer = (state = initialState, action) => {
         })
     } else if (action.type === RESTART_SEARCH) {
         return Object.assign({}, initialState, {
-            code: state.code,
-            destinationImages: [...state.destinationImages.slice(1), state.destinationImages[0]]
+            code: state.code
         })
     }
 	return state;

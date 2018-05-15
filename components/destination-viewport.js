@@ -43,7 +43,7 @@ export class DestinationViewport extends React.Component {
 
                 loop={true}
 
-                handleYup={destination => this.searchFlight(code, destination.airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
+                handleYup={destination => this.searchFlight(code, destination.airport, startDay, startMonth, startYear, endDay, endMonth, endYear, destination.location, destination.attraction, destination.why)}
                 // handleNope={() => this.props.dispatch(displayNextDestinationImage())}
 
                 yupTextStyle={styles.text}
