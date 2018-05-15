@@ -33,8 +33,9 @@ export const storeCurrentIndex = currentIndex => ({
 });
 
 export const DISPLAY_NEXT_DESTINATION_IMAGE = 'DISPLAY_NEXT_DESTINATION_IMAGE';
-export const displayNextDestinationImage = () => ({
-  type: DISPLAY_NEXT_DESTINATION_IMAGE
+export const displayNextDestinationImage = currentIndex => ({
+  type: DISPLAY_NEXT_DESTINATION_IMAGE,
+  currentIndex
 });
 
 export const DISPLAY_CURRENT_DESTINATION_IMAGE = 'DISPLAY_CURRENT_DESTINATION_IMAGE';

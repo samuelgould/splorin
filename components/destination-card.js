@@ -89,7 +89,7 @@ export class DestinationCard extends React.Component {
                                 />
                             </TouchableHighlight>
                             <TouchableHighlight 
-                                onPress={() => this.props.dispatch(displayNextDestinationImage())}
+                                onPress={() => this.props.dispatch(displayNextDestinationImage(currentIndex))}
                                 style={[styles.iconButton, styles.purpleButton]}
                                 underlayColor='#C8C8CD'
                             >

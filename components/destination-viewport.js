@@ -3,7 +3,7 @@ import { StyleSheet, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import SwipeCards from 'react-native-swipe-cards';
 import DestinationCard from './destination-card';
-import { searchFlight, displayNextDestinationImage, storeCurrentIndex } from '../actions/flight';
+import { searchFlight, storeCurrentIndex } from '../actions/flight';
 import FlightInformation from './flight-information';
 
 export class DestinationViewport extends React.Component {
@@ -22,7 +22,7 @@ export class DestinationViewport extends React.Component {
         }
     }
 
-    cardRemoved (index) {
+    cardRemoved(index) {
         this.props.dispatch(storeCurrentIndex(index));
     }
 
@@ -49,7 +49,6 @@ export class DestinationViewport extends React.Component {
                 loop={true}
 
                 handleYup={destination => this.searchFlight(code, destination.airport, startDay, startMonth, startYear, endDay, endMonth, endYear, destination.location, destination.attraction, destination.why, currentIndex)}
-                // handleNope={() => this.props.dispatch(displayNextDestinationImage())}
 
                 cardRemoved={this.cardRemoved.bind(this)}
                 yupTextStyle={styles.text}
