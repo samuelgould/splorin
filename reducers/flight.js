@@ -25,7 +25,7 @@ const initialState = {
     endDate: null,
     destination: null,
     moreInfo: false,
-    currentIndex: 0,
+    currentIndex: -1,
     loading: false,
     error: null,
     flight: null,
@@ -127,23 +127,36 @@ export const reducer = (state = initialState, action) => {
             destinationImagesView: true
         })
     } else if (action.type === STORE_CURRENT_INDEX) {
-		return Object.assign({}, state, {
-			currentIndex: action.currentIndex
+        let index = action.currentIndex;
+        if (index === 7) {
+            index = -1;
+        }
+        return Object.assign({}, state, {
+			currentIndex: index
 		})
 	} else if (action.type === DISPLAY_NEXT_DESTINATION_IMAGE) {
+        let images = [...state.destinationImages.slice(action.currentIndex+2), ...state.destinationImages.slice(0, action.currentIndex+2)];
+        if (action.currentIndex === -1) {
+            images = [...state.destinationImages.slice(1), state.destinationImages[0]];
+        }
         return Object.assign({}, state, {
             moreInfo: false,
-            destinationImages: [...state.destinationImages.slice(action.currentIndex+2), ...state.destinationImages.slice(0, action.currentIndex+2)]
+            destinationImages: images
         })
     } else if (action.type === DISPLAY_CURRENT_DESTINATION_IMAGE) {
         return Object.assign({}, state, {
             flightInformationView: false,
             destinationImagesView: true,
             noRestrictionsFail: false,
-            moreInfo: false
+            moreInfo: false,
+            currentIndex: -1
         })
     } else if (action.type === SEARCH_FLIGHT_REQUEST) {
-		return Object.assign({}, state, {
+        let images = [...state.destinationImages.slice(action.currentIndex+1), ...state.destinationImages.slice(0, action.currentIndex+1)];
+        if (action.currentIndex === -1) {
+            images = [...state.destinationImages]
+        }
+        return Object.assign({}, state, {
             loading: true,
             destinationImagesView: false,
             flightInformationView: true,
@@ -151,7 +164,7 @@ export const reducer = (state = initialState, action) => {
             location: action.location,
             attraction: action.attraction,
             why: action.why,
-            destinationImages: [...state.destinationImages.slice(action.currentIndex+1), ...state.destinationImages.slice(0, action.currentIndex+1)]
+            destinationImages: images
 		})
 	} else if (action.type === SEARCH_FLIGHT_SUCCESS) {
 		return Object.assign({}, state, {
