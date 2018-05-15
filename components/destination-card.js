@@ -71,7 +71,7 @@ export class DestinationCard extends React.Component {
                                     name='flight-takeoff'
                                     color='#fefbf7'
                                     size={25}
-                                    onPress={() => this.searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
+                                    onPress={() => this.searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why)}
                                 />
                             </TouchableHighlight>
                             <TouchableHighlight 

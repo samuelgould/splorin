@@ -192,7 +192,11 @@ const mapStateToProps = state => ({
     startDate: state.startDate,
     endDate: state.endDate,
     code: state.code,
-    noRestrictionsFail: state.noRestrictionsFail
+    noRestrictionsFail: state.noRestrictionsFail,
+    airport: state.destination,
+    location: state.location,
+    attraction: state.attraction,
+    why: state.why
 })
 
 export default connect(mapStateToProps)(FlightInformation);
