@@ -7,9 +7,7 @@ import { searchFlight, displayNextDestinationImage, restartSearch, toggleMoreInf
 export class DestinationCard extends React.Component {
 
     render() {
-        let { code, startDate, endDate, moreInfo } = this.props;
-
-        const { source, description, airport, attraction, location, why } = this.props;
+        let { code, startDate, endDate, moreInfo, source, description, airport, attraction, location, why } = this.props;
         
         startDate = new Date(startDate);
         startDay = startDate.getDate();
@@ -73,7 +71,7 @@ export class DestinationCard extends React.Component {
                                     name='flight-takeoff'
                                     color='#fefbf7'
                                     size={25}
-                                        onPress={() => this.searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
+                                    onPress={() => this.searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
                                 />
                             </TouchableHighlight>
                             <TouchableHighlight 

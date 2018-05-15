@@ -41,10 +41,10 @@ export class DestinationViewport extends React.Component {
                 cards={destinationImages}
                 renderCard={destination => <DestinationCard {...destination} />}
 
-                showSecondCard={true}
+                loop={true}
 
                 handleYup={destination => this.searchFlight(code, destination.airport, startDay, startMonth, startYear, endDay, endMonth, endYear)}
-                handleNope={() => this.props.dispatch(displayNextDestinationImage())}
+                // handleNope={() => this.props.dispatch(displayNextDestinationImage())}
 
                 yupTextStyle={styles.text}
                 yupStyle={styles.yup}
