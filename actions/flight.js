@@ -66,7 +66,6 @@ export const searchFlightError = error => ({
 });
 
 export const searchFlight = (departure, destination, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why, currentIndex) => dispatch => {
-    console.log(currentIndex);
     dispatch(searchFlightRequest(destination, location, attraction, why, currentIndex));
     return fetch(`https://api.skypicker.com/flights?flyFrom=${departure}&to=${destination}&dateFrom=${startDay}%2F${startMonth}%2F${startYear}&dateTo=${startDay}%2F${startMonth}%2F${startYear}&returnFrom=${endDay}%2F${endMonth}%2F${endYear}&returnTo=${endDay}%2F${endMonth}%2F${endYear}&typeFlight=round&partner=picky&partner_market=us&curr=USD&locale=en-US&maxstopovers=${2}&limit=${1}&sort=price&asc=${1}`, 
 	{
