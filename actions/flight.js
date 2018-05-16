@@ -125,6 +125,11 @@ export const toggleMoreInfo = () => ({
   type: TOGGLE_MORE_INFO
 });
 
+export const HIDE_MORE_INFO = 'HIDE_MORE_INFO';
+export const hideMoreInfo = () => ({
+  type: HIDE_MORE_INFO
+});
+
 export const RESTART_SEARCH = 'RESTART_SEARCH';
 export const restartSearch = () => ({
   type: RESTART_SEARCH

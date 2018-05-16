@@ -12,6 +12,7 @@ import {
     DISPLAY_NEXT_DESTINATION_IMAGE,
     DISPLAY_CURRENT_DESTINATION_IMAGE,
     TOGGLE_MORE_INFO,
+    HIDE_MORE_INFO,
     RESTART_SEARCH
 } from '../actions/flight';
 
@@ -185,6 +186,10 @@ export const reducer = (state = initialState, action) => {
     } else if (action.type === TOGGLE_MORE_INFO) {
 		return Object.assign({}, state, {
 			moreInfo: !state.moreInfo
+        })
+    } else if (action.type === HIDE_MORE_INFO) {
+		return Object.assign({}, state, {
+			moreInfo: false
         })
     } else if (action.type === RESTART_SEARCH) {
         return Object.assign({}, initialState, {
