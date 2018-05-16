@@ -23,6 +23,7 @@ export class DestinationViewport extends React.Component {
 
     cardRemoved(index) {
         this.props.dispatch(storeCurrentIndex(index));
+        this.props.dispatch(hideMoreInfo());
     }
 
     render() {
@@ -48,7 +49,6 @@ export class DestinationViewport extends React.Component {
                 loop={true}
 
                 handleYup={destination => this.searchFlight(code, destination.airport, startDay, startMonth, startYear, endDay, endMonth, endYear, destination.location, destination.attraction, destination.why, currentIndex)}
-                handleNope={() => this.props.dispatch(hideMoreInfo())}
 
                 cardRemoved={this.cardRemoved.bind(this)}
 
