@@ -1,5 +1,8 @@
 import { 
     STORE_DEPARTURE_AIRPORT,
+    SEARCH_AIRPORT_CODE_REQUEST,
+    SEARCH_AIRPORT_CODE_SUCCESS,
+    SEARCH_AIRPORT_CODE_ERROR,
     SUBMIT_DEPARTURE_AIRPORT,
     STORE_START_DATE,
     STORE_END_DATE,
@@ -107,6 +110,21 @@ export const reducer = (state = initialState, action) => {
   if (action.type === STORE_DEPARTURE_AIRPORT) {
 		return Object.assign({}, state, {
 			code: action.code,
+		})
+	} else if (action.type === SEARCH_AIRPORT_CODE_REQUEST) {
+		return Object.assign({}, state, {
+			loading: true
+		})
+	} else if (action.type === SEARCH_AIRPORT_CODE_ERROR) {
+		return Object.assign({}, state, {
+			loading: false,
+			error: action.error
+        })
+    } else if (action.type === SEARCH_AIRPORT_CODE_SUCCESS) {
+		return Object.assign({}, state, {
+			code: action.code,
+			loading: false,
+            error: null
 		})
 	} else if (action.type === SUBMIT_DEPARTURE_AIRPORT) {
         return Object.assign({}, state, {
