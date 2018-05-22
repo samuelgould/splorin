@@ -1,8 +1,51 @@
+import { API_KEY } from '../config';
+
 export const STORE_DEPARTURE_AIRPORT = 'STORE_DEPARTURE_AIRPORT';
 export const storeDepartureAirport = code => ({
   type: STORE_DEPARTURE_AIRPORT,
   code
 });
+
+export const SEARCH_AIRPORT_CODE_REQUEST = 'SEARCH_AIRPORT_CODE_REQUEST';
+export const searchAirportCodeRequest = () => ({
+  type: SEARCH_AIRPORT_CODE_REQUEST
+});
+
+export const SEARCH_AIRPORT_CODE_SUCCESS = 'SEARCH_AIRPORT_CODE_SUCCESS';
+export const searchAirportCodeSuccess = code => ({
+  type: SEARCH_AIRPORT_CODE_SUCCESS,
+  code
+});
+
+export const SEARCH_AIRPORT_CODE_ERROR = 'SEARCH_AIRPORT_CODE_ERROR';
+export const searchAirportCodeError = error => ({
+  type: SEARCH_AIRPORT_CODE_ERROR,
+  error
+});
+
+export const searchAirportCode = search => dispatch => {
+  dispatch(searchAirportCodeRequest());
+  return fetch(`https://iatacodes.org/api/v6/autocomplete?api_key=${API_KEY}&query=${search}`, 
+{
+  method: 'GET',
+  headers: {
+    'Accept': 'application/json'
+  }
+})
+.then(res => {
+  if (!res.ok) {
+    return Promise.reject('Something has gone wrong');
+  }
+  return res.json()
+})
+.then(results => {
+  console.log(results);
+  dispatch(searchAirportCodeSuccess(results));
+})
+.catch(err => 
+  dispatch(searchAirportCodeError(err))
+)
+}
 
 export const SUBMIT_DEPARTURE_AIRPORT = 'SUBMIT_DEPARTURE_AIRPORT';
 export const submitDepartureAirport = () => ({
