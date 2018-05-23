@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, TextInput, Image, Alert } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { storeDepartureAirport, submitDepartureAirport } from '../actions/flight';
+import { submitDepartureAirport, searchAirportCode } from '../actions/flight';
 
 export class StartLocation extends React.Component {
 
@@ -23,11 +23,11 @@ export class StartLocation extends React.Component {
 
   updateAirportCode(code) {
     if (/^[a-zA-Z]+$/.test(code) || code === '') {
-      this.props.dispatch(storeDepartureAirport(code.toUpperCase()))
+      this.props.dispatch(searchAirportCode(code));
     } else {
       Alert.alert(
         'Whoops...',
-        'Airport codes only contain letters. Let\'s try that again.',
+        'Let\'s try with only letters.',
         [
           {text: 'OK', onPress: () => console.log('OK Pressed')},
         ],
@@ -35,6 +35,7 @@ export class StartLocation extends React.Component {
     )
     }
   }
+
 
   render() {
     return (
@@ -44,7 +45,7 @@ export class StartLocation extends React.Component {
             style={styles.textInput}
             onChangeText={code => this.updateAirportCode(code)}
             placeholder='Where From?'
-            value={this.props.code}
+            value={this.props.search}
           />     
           <Button
             onPress={() => this.submitDepartureAirport()}
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-	code: state.code
+	search: state.search
 })
 
 export default connect(mapStateToProps)(StartLocation);

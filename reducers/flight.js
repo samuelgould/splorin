@@ -24,6 +24,7 @@ const initialState = {
     pickDatesView: false,
     destinationImagesView: false,
     flightInformationView: false,
+    search: null,
     code: null,
     startDate: null,
     endDate: null,
@@ -113,7 +114,8 @@ export const reducer = (state = initialState, action) => {
 		})
 	} else if (action.type === SEARCH_AIRPORT_CODE_REQUEST) {
 		return Object.assign({}, state, {
-			loading: true
+            loading: true,
+            search: action.search
 		})
 	} else if (action.type === SEARCH_AIRPORT_CODE_ERROR) {
 		return Object.assign({}, state, {
