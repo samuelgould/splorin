@@ -22,7 +22,7 @@ export class StartLocation extends React.Component {
     }
   }
 
-  updateAirportCode(query) {
+  queryAirportCode(query) {
     if (/^[a-zA-Z]+$/.test(query) || query === '') {
       this.props.dispatch(searchAirportCode(query));
     } else {
@@ -39,18 +39,21 @@ export class StartLocation extends React.Component {
 
 
   render() {
+
+    const { airports } = this.props;
+
     return (
       <View style={styles.container}>
         <View>
           <Autocomplete
-            data={this.props.airports}
+            data={airports}
             defaultValue={this.props.query}
-            onChangeText={query => this.updateAirportCode(query)}
+            onChangeText={query => this.queryAirportCode(query)}
             placeholder='Where From?'
-            renderItem={() => (
-              <TouchableOpacity onPress={() => console.log('touch')}>
+            renderItem={({ name, country_name, code }) => (
+              <TouchableOpacity onPress={() => this.props.dispatch(selectAirportCodeOption(code))}>
                 <Text>
-                  Test
+                  {name}, {country_name} ({code})
                 </Text>
               </TouchableOpacity>
             )}
