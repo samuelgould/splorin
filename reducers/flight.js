@@ -16,7 +16,8 @@ import {
     TOGGLE_MORE_INFO,
     HIDE_MORE_INFO,
     RESTART_SEARCH,
-    SELECT_AIRPORT_CODE_OPTION
+    SELECT_AIRPORT_CODE_OPTION,
+    EMPTY_SEARCH_QUERY
 } from '../actions/flight';
 
 const initialState = { 
@@ -128,6 +129,11 @@ export const reducer = (state = initialState, action) => {
         return Object.assign({}, state, {
             airports: [],
             query: action.code
+        })
+    } else if (action.type === EMPTY_SEARCH_QUERY) {
+        return Object.assign({}, state, {
+            airports: [],
+            query: ''
         })
     } else if (action.type === SUBMIT_DEPARTURE_AIRPORT) {
         return Object.assign({}, state, {

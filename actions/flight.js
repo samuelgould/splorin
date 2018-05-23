@@ -1,5 +1,10 @@
 import { API_KEY } from '../config';
 
+export const EMPTY_SEARCH_QUERY = 'EMPTY_SEARCH_QUERY';
+export const emptySearchQuery = () => ({
+  type: EMPTY_SEARCH_QUERY
+});
+
 export const SEARCH_AIRPORT_CODE_REQUEST = 'SEARCH_AIRPORT_CODE_REQUEST';
 export const searchAirportCodeRequest = query => ({
   type: SEARCH_AIRPORT_CODE_REQUEST,
@@ -21,24 +26,25 @@ export const searchAirportCodeError = error => ({
 export const searchAirportCode = query => dispatch => {
   dispatch(searchAirportCodeRequest(query));
   return fetch(`https://iatacodes.org/api/v6/autocomplete?api_key=${API_KEY}&query=${query}`, 
-{
-  method: 'GET',
-  headers: {
-    'Accept': 'application/json'
-  }
-})
-.then(res => {
-  if (!res.ok) {
-    return Promise.reject('Something has gone wrong');
-  }
-  return res.json()
-})
-.then(results => {
-  dispatch(searchAirportCodeSuccess(results.response.cities));
-})
-.catch(err => 
-  dispatch(searchAirportCodeError(err))
-)
+    {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(res => {
+      if (!res.ok) {
+        return Promise.reject('Something has gone wrong');
+      }
+      return res.json()
+    })
+    .then(results => {
+      dispatch(searchAirportCodeSuccess(results.response.cities));
+    })
+    .catch(err => 
+      dispatch(searchAirportCodeError(err)
+    )
+  )
 }
 
 export const SELECT_AIRPORT_CODE_OPTION = 'SELECT_AIRPORT_CODE_OPTION';

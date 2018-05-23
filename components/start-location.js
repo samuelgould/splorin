@@ -3,7 +3,7 @@ import { View, StyleSheet, TextInput, Image, Alert, Text, TouchableOpacity } fro
 import { Button, Icon } from 'react-native-elements';
 import Autocomplete from 'react-native-autocomplete-input';
 import { connect } from 'react-redux';
-import { submitDepartureAirport, searchAirportCode, selectAirportCodeOption } from '../actions/flight';
+import { submitDepartureAirport, searchAirportCode, selectAirportCodeOption, emptySearchQuery } from '../actions/flight';
 
 export class StartLocation extends React.Component {
 
@@ -23,8 +23,12 @@ export class StartLocation extends React.Component {
   }
 
   searchAirportCode(query) {
-    const capitalizedQuery = query.toUpperCase();
-    this.props.dispatch(searchAirportCode(capitalizedQuery));
+    if (query !== '') {
+      const capitalizedQuery = query.toUpperCase();
+      this.props.dispatch(searchAirportCode(capitalizedQuery));
+    } else {
+      this.props.dispatch(emptySearchQuery());
+    }
   }
 
   render() {
@@ -35,6 +39,7 @@ export class StartLocation extends React.Component {
       <View style={styles.container}>
         <View>
           <Autocomplete
+            style={styles.textInput}
             data={airports}
             defaultValue={this.props.query}
             onChangeText={query => this.searchAirportCode(query)}
