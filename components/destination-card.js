@@ -21,7 +21,7 @@ export class DestinationCard extends React.Component {
     }
 
     render() {
-        let { code, startDate, endDate, moreInfo, source, description, airport, attraction, location, why, currentIndex } = this.props;
+        let { query, startDate, endDate, moreInfo, source, description, airport, attraction, location, why, currentIndex } = this.props;
         
         startDate = new Date(startDate);
         startDay = startDate.getDate();
@@ -85,7 +85,7 @@ export class DestinationCard extends React.Component {
                                     name='flight-takeoff'
                                     color='#fefbf7'
                                     size={25}
-                                    onPress={() => this.searchFlight(code, airport, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why, currentIndex)}
+                                    onPress={() => this.searchFlight(query, airport, startDay, startMonth, startYear, endDay, endMonth, endYear, location, attraction, why, currentIndex)}
                                 />
                             </TouchableHighlight>
                             <TouchableHighlight 
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
   
 
 const mapStateToProps = state => ({
-    code: state.code,
+    query: state.query,
     startDate: state.startDate,
     endDate: state.endDate,
     moreInfo: state.moreInfo,

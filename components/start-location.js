@@ -8,12 +8,12 @@ import { submitDepartureAirport, searchAirportCode, selectAirportCodeOption } fr
 export class StartLocation extends React.Component {
 
   submitDepartureAirport() {
-    if (this.props.code !== null && this.props.code.length === 3) {
+    if (this.props.query !== null && this.props.query.length === 3) {
       this.props.dispatch(submitDepartureAirport())
     } else {
         Alert.alert(
             'Not so fast...',
-            'We need to know where you are starting this adventure. That means entering a 3 letter airport code of your home airport.',
+            'We need to know the airport where you are starting this adventure.',
             [
               {text: 'OK', onPress: () => console.log('OK Pressed')},
             ],
@@ -22,21 +22,10 @@ export class StartLocation extends React.Component {
     }
   }
 
-  // queryAirportCode(query) {
-  //   if (/^[a-zA-Z]+$/.test(query) || query === '') {
-      
-  //   } else {
-  //     Alert.alert(
-  //       'Whoops...',
-  //       'Let\'s try with only letters.',
-  //       [
-  //         {text: 'OK', onPress: () => console.log('OK Pressed')},
-  //       ],
-  //       { cancelable: false }
-  //   )
-  //   }
-  // }
-
+  searchAirportCode(query) {
+    const capitalizedQuery = query.toUpperCase();
+    this.props.dispatch(searchAirportCode(capitalizedQuery));
+  }
 
   render() {
 
@@ -48,7 +37,7 @@ export class StartLocation extends React.Component {
           <Autocomplete
             data={airports}
             defaultValue={this.props.query}
-            onChangeText={query => this.props.dispatch(searchAirportCode(query))}
+            onChangeText={query => this.searchAirportCode(query)}
             placeholder='Where From?'
             renderItem={({ name, country_name, code }) => (
               <TouchableOpacity onPress={() => this.props.dispatch(selectAirportCodeOption(code))}>
@@ -58,12 +47,6 @@ export class StartLocation extends React.Component {
               </TouchableOpacity>
             )}
           />
-          {/* <TextInput
-            style={styles.textInput}
-            onChangeText={code => this.updateAirportCode(code)}
-            placeholder='Where From?'
-            value={this.props.search}
-          />      */}
           <Button
             onPress={() => this.submitDepartureAirport()}
             title='Continue'
@@ -133,7 +116,6 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  code: state.code,
   query: state.query,
   airports: state.airports || []
 })
