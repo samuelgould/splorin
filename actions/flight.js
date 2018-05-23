@@ -48,6 +48,12 @@ export const searchAirportCode = query => dispatch => {
 )
 }
 
+export const SELECT_AIRPORT_CODE_OPTION = 'SELECT_AIRPORT_CODE_OPTION';
+export const selectAirportCodeOption = code => ({
+  type: SELECT_AIRPORT_CODE_OPTION,
+  code
+});
+
 export const SUBMIT_DEPARTURE_AIRPORT = 'SUBMIT_DEPARTURE_AIRPORT';
 export const submitDepartureAirport = () => ({
   type: SUBMIT_DEPARTURE_AIRPORT
