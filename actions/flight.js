@@ -7,8 +7,9 @@ export const storeDepartureAirport = code => ({
 });
 
 export const SEARCH_AIRPORT_CODE_REQUEST = 'SEARCH_AIRPORT_CODE_REQUEST';
-export const searchAirportCodeRequest = () => ({
-  type: SEARCH_AIRPORT_CODE_REQUEST
+export const searchAirportCodeRequest = search => ({
+  type: SEARCH_AIRPORT_CODE_REQUEST,
+  search
 });
 
 export const SEARCH_AIRPORT_CODE_SUCCESS = 'SEARCH_AIRPORT_CODE_SUCCESS';
@@ -24,7 +25,7 @@ export const searchAirportCodeError = error => ({
 });
 
 export const searchAirportCode = search => dispatch => {
-  dispatch(searchAirportCodeRequest());
+  dispatch(searchAirportCodeRequest(search));
   return fetch(`https://iatacodes.org/api/v6/autocomplete?api_key=${API_KEY}&query=${search}`, 
 {
   method: 'GET',
