@@ -3,7 +3,7 @@ import { View, StyleSheet, TextInput, Image, Alert, Text, TouchableOpacity } fro
 import { Button, Icon } from 'react-native-elements';
 import Autocomplete from 'react-native-autocomplete-input';
 import { connect } from 'react-redux';
-import { submitDepartureAirport, searchAirportCode } from '../actions/flight';
+import { submitDepartureAirport, searchAirportCode, selectAirportCodeOption } from '../actions/flight';
 
 export class StartLocation extends React.Component {
 
@@ -22,20 +22,20 @@ export class StartLocation extends React.Component {
     }
   }
 
-  queryAirportCode(query) {
-    if (/^[a-zA-Z]+$/.test(query) || query === '') {
-      this.props.dispatch(searchAirportCode(query));
-    } else {
-      Alert.alert(
-        'Whoops...',
-        'Let\'s try with only letters.',
-        [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
-        { cancelable: false }
-    )
-    }
-  }
+  // queryAirportCode(query) {
+  //   if (/^[a-zA-Z]+$/.test(query) || query === '') {
+      
+  //   } else {
+  //     Alert.alert(
+  //       'Whoops...',
+  //       'Let\'s try with only letters.',
+  //       [
+  //         {text: 'OK', onPress: () => console.log('OK Pressed')},
+  //       ],
+  //       { cancelable: false }
+  //   )
+  //   }
+  // }
 
 
   render() {
@@ -48,7 +48,7 @@ export class StartLocation extends React.Component {
           <Autocomplete
             data={airports}
             defaultValue={this.props.query}
-            onChangeText={query => this.queryAirportCode(query)}
+            onChangeText={query => this.props.dispatch(searchAirportCode(query))}
             placeholder='Where From?'
             renderItem={({ name, country_name, code }) => (
               <TouchableOpacity onPress={() => this.props.dispatch(selectAirportCodeOption(code))}>
@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
+  code: state.code,
   query: state.query,
   airports: state.airports || []
 })

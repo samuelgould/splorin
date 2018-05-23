@@ -16,7 +16,8 @@ import {
     DISPLAY_CURRENT_DESTINATION_IMAGE,
     TOGGLE_MORE_INFO,
     HIDE_MORE_INFO,
-    RESTART_SEARCH
+    RESTART_SEARCH,
+    SELECT_AIRPORT_CODE_OPTION
 } from '../actions/flight';
 
 const initialState = { 
@@ -129,7 +130,13 @@ export const reducer = (state = initialState, action) => {
 			loading: false,
             error: null
 		})
-	} else if (action.type === SUBMIT_DEPARTURE_AIRPORT) {
+	} else if (action.type === SELECT_AIRPORT_CODE_OPTION) {
+        return Object.assign({}, state, {
+            airports: [],
+            code: action.code,
+            query: action.code
+        })
+    } else if (action.type === SUBMIT_DEPARTURE_AIRPORT) {
         return Object.assign({}, state, {
             startLocationView: false,
             pickDatesView: true
