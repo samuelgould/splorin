@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, StyleSheet, TextInput, Image, Alert } from 'react-native';
+import { View, StyleSheet, TextInput, Image, Alert, Text, TouchableOpacity } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
+import Autocomplete from 'react-native-autocomplete-input';
 import { connect } from 'react-redux';
 import { submitDepartureAirport, searchAirportCode } from '../actions/flight';
 
@@ -41,12 +42,25 @@ export class StartLocation extends React.Component {
     return (
       <View style={styles.container}>
         <View>
-          <TextInput
+          <Autocomplete
+            data={this.props.airports}
+            defaultValue={this.props.search}
+            onChangeText={search => this.updateAirportCode(search)}
+            placeholder='Where From?'
+            renderItem={() => (
+              <TouchableOpacity onPress={() => console.log('touch')}>
+                <Text>
+                  Test
+                </Text>
+              </TouchableOpacity>
+            )}
+          />
+          {/* <TextInput
             style={styles.textInput}
             onChangeText={code => this.updateAirportCode(code)}
             placeholder='Where From?'
             value={this.props.search}
-          />     
+          />      */}
           <Button
             onPress={() => this.submitDepartureAirport()}
             title='Continue'
@@ -116,7 +130,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-	search: state.search
+  search: state.search,
+  airports: state.airports || []
 })
 
 export default connect(mapStateToProps)(StartLocation);
