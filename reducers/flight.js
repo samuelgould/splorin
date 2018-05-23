@@ -24,7 +24,8 @@ const initialState = {
     pickDatesView: false,
     destinationImagesView: false,
     flightInformationView: false,
-    search: null,
+    query: null,
+    airports: [],
     code: null,
     startDate: null,
     endDate: null,
@@ -115,7 +116,7 @@ export const reducer = (state = initialState, action) => {
 	} else if (action.type === SEARCH_AIRPORT_CODE_REQUEST) {
 		return Object.assign({}, state, {
             loading: true,
-            search: action.search
+            query: action.query
 		})
 	} else if (action.type === SEARCH_AIRPORT_CODE_ERROR) {
 		return Object.assign({}, state, {
@@ -124,7 +125,7 @@ export const reducer = (state = initialState, action) => {
         })
     } else if (action.type === SEARCH_AIRPORT_CODE_SUCCESS) {
 		return Object.assign({}, state, {
-			code: action.code,
+			airports: action.airports,
 			loading: false,
             error: null
 		})

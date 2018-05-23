@@ -22,9 +22,9 @@ export class StartLocation extends React.Component {
     }
   }
 
-  updateAirportCode(code) {
-    if (/^[a-zA-Z]+$/.test(code) || code === '') {
-      this.props.dispatch(searchAirportCode(code));
+  updateAirportCode(query) {
+    if (/^[a-zA-Z]+$/.test(query) || query === '') {
+      this.props.dispatch(searchAirportCode(query));
     } else {
       Alert.alert(
         'Whoops...',
@@ -44,8 +44,8 @@ export class StartLocation extends React.Component {
         <View>
           <Autocomplete
             data={this.props.airports}
-            defaultValue={this.props.search}
-            onChangeText={search => this.updateAirportCode(search)}
+            defaultValue={this.props.query}
+            onChangeText={query => this.updateAirportCode(query)}
             placeholder='Where From?'
             renderItem={() => (
               <TouchableOpacity onPress={() => console.log('touch')}>
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  search: state.search,
+  query: state.query,
   airports: state.airports || []
 })
 
