@@ -1,11 +1,5 @@
 import { API_KEY } from '../config';
 
-export const STORE_DEPARTURE_AIRPORT = 'STORE_DEPARTURE_AIRPORT';
-export const storeDepartureAirport = code => ({
-  type: STORE_DEPARTURE_AIRPORT,
-  code
-});
-
 export const SEARCH_AIRPORT_CODE_REQUEST = 'SEARCH_AIRPORT_CODE_REQUEST';
 export const searchAirportCodeRequest = query => ({
   type: SEARCH_AIRPORT_CODE_REQUEST,
@@ -40,7 +34,6 @@ export const searchAirportCode = query => dispatch => {
   return res.json()
 })
 .then(results => {
-  console.log(results.response.cities);
   dispatch(searchAirportCodeSuccess(results.response.cities));
 })
 .catch(err => 

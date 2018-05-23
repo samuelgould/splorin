@@ -27,7 +27,7 @@ export class DestinationViewport extends React.Component {
     }
 
     render() {
-        let { code, startDate, endDate, destinationImages, currentIndex } = this.props;
+        let { query, startDate, endDate, destinationImages, currentIndex } = this.props;
 
         startDate = new Date(startDate);
         startDay = startDate.getDate();
@@ -48,7 +48,7 @@ export class DestinationViewport extends React.Component {
 
                 loop={true}
 
-                handleYup={destination => this.searchFlight(code, destination.airport, startDay, startMonth, startYear, endDay, endMonth, endYear, destination.location, destination.attraction, destination.why, currentIndex)}
+                handleYup={destination => this.searchFlight(query, destination.airport, startDay, startMonth, startYear, endDay, endMonth, endYear, destination.location, destination.attraction, destination.why, currentIndex)}
 
                 cardRemoved={this.cardRemoved.bind(this)}
 
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    code: state.code,
+    query: state.query,
     startDate: state.startDate,
     endDate: state.endDate,
     destinationImages: state.destinationImages,

@@ -1,5 +1,4 @@
 import { 
-    STORE_DEPARTURE_AIRPORT,
     SEARCH_AIRPORT_CODE_REQUEST,
     SEARCH_AIRPORT_CODE_SUCCESS,
     SEARCH_AIRPORT_CODE_ERROR,
@@ -27,7 +26,6 @@ const initialState = {
     flightInformationView: false,
     query: null,
     airports: [],
-    code: null,
     startDate: null,
     endDate: null,
     destination: null,
@@ -110,11 +108,7 @@ const initialState = {
   }
 
 export const reducer = (state = initialState, action) => {
-  if (action.type === STORE_DEPARTURE_AIRPORT) {
-		return Object.assign({}, state, {
-			code: action.code,
-		})
-	} else if (action.type === SEARCH_AIRPORT_CODE_REQUEST) {
+  if (action.type === SEARCH_AIRPORT_CODE_REQUEST) {
 		return Object.assign({}, state, {
             loading: true,
             query: action.query
@@ -133,7 +127,6 @@ export const reducer = (state = initialState, action) => {
 	} else if (action.type === SELECT_AIRPORT_CODE_OPTION) {
         return Object.assign({}, state, {
             airports: [],
-            code: action.code,
             query: action.code
         })
     } else if (action.type === SUBMIT_DEPARTURE_AIRPORT) {
@@ -221,7 +214,7 @@ export const reducer = (state = initialState, action) => {
         })
     } else if (action.type === RESTART_SEARCH) {
         return Object.assign({}, initialState, {
-            code: state.code
+            query: state.query
         })
     }
 	return state;
