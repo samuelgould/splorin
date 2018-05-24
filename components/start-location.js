@@ -40,6 +40,8 @@ export class StartLocation extends React.Component {
         <View>
           <Autocomplete
             style={styles.textInput}
+            inputContainerStyle={{borderWidth: 0}}
+            listStyle={styles.optionsContainer}
             data={airports}
             defaultValue={this.props.query}
             onChangeText={query => this.searchAirportCode(query)}
@@ -47,7 +49,6 @@ export class StartLocation extends React.Component {
             renderItem={({ name, country_name, code }) => (
               <TouchableOpacity 
                 onPress={() => this.props.dispatch(selectAirportCodeOption(code))}
-                style={styles.optionsContainer}
               >
                 <Text style={styles.optionsText}>
                   {name}, {country_name} ({code})
@@ -95,8 +96,7 @@ const styles = StyleSheet.create({
     elevation: 1,
     width: 300, 
     padding: 10,
-    margin: 15,
-    border: 'black'
+    margin: 15
   },
   optionsText: {
     color: '#33CC99',
@@ -104,8 +104,21 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   optionsContainer: {
+    backgroundColor: '#fefbf7',
+    borderRadius: 8,
+    shadowColor: 'black',
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
+    shadowOffset: {
+        width: 0,
+        height: 1,
+    },
+    elevation: 1,
     width: 300,
-    marginLeft: 20
+    marginLeft: 15,
+    marginTop: -14,
+    padding: 10,
+    borderWidth: 0
   },
   button: {
     shadowColor: 'black',
