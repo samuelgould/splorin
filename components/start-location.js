@@ -37,10 +37,13 @@ export class StartLocation extends React.Component {
 
     return (
       <View style={styles.container}>
+
+        <Image source={require('../images/fullSplorinLogo.png')} alt='Splorin Logo with Dino and text' style={styles.logo}/>
+
         <View>
           <Autocomplete
             style={styles.textInput}
-            inputContainerStyle={{borderWidth: 0}}
+            inputContainerStyle={styles.inputContainer}
             listStyle={styles.optionsContainer}
             data={airports}
             defaultValue={this.props.query}
@@ -65,9 +68,6 @@ export class StartLocation extends React.Component {
             style={styles.button}
           />
         </View>
-
-        <Image source={require('../images/fullSplorinLogo.png')} alt='Splorin Logo with Dino and text' style={styles.logo}/>
-
       </View>
     )
   }
@@ -76,9 +76,12 @@ export class StartLocation extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'column-reverse',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  inputContainer: {
+    borderWidth: 0
   },
   textInput: {
     color: '#33CC99',
@@ -101,34 +104,26 @@ const styles = StyleSheet.create({
   optionsText: {
     color: '#33CC99',
     fontWeight: 'bold',
-    fontSize: 16
+    fontSize: 16,
+    padding: 10
   },
   optionsContainer: {
     backgroundColor: '#fefbf7',
-    borderRadius: 8,
-    shadowColor: 'black',
-    shadowOpacity: 0.5,
-    shadowRadius: 10,
-    shadowOffset: {
-        width: 0,
-        height: 1,
-    },
-    elevation: 1,
-    width: 300,
-    marginLeft: 15,
-    marginTop: -14,
-    padding: 10,
-    borderWidth: 0
+    width: 302,
+    marginLeft: 14,
+    marginTop: -26,
+    paddingTop: 20,
+    borderWidth: 1
   },
   button: {
     shadowColor: 'black',
-    shadowOpacity: 0.5,
+    shadowOpacity: 0.25,
     shadowRadius: 10,
     shadowOffset: {
         width: 0,
         height: 1,
     },
-    elevation: 1,
+    elevation: 1
   },
   logo: {
     width: 300, 
