@@ -45,8 +45,11 @@ export class StartLocation extends React.Component {
             onChangeText={query => this.searchAirportCode(query)}
             placeholder='Where From?'
             renderItem={({ name, country_name, code }) => (
-              <TouchableOpacity onPress={() => this.props.dispatch(selectAirportCodeOption(code))}>
-                <Text style={styles.options}>
+              <TouchableOpacity 
+                onPress={() => this.props.dispatch(selectAirportCodeOption(code))}
+                style={styles.optionsContainer}
+              >
+                <Text style={styles.optionsText}>
                   {name}, {country_name} ({code})
                 </Text>
               </TouchableOpacity>
@@ -80,9 +83,7 @@ const styles = StyleSheet.create({
     color: '#33CC99',
     fontWeight: 'bold',
     fontSize: 24,
-    height: 50, 
-    borderColor: '#ccc', 
-    borderWidth: 1,
+    height: 50,
     borderRadius: 8,
     shadowColor: 'black',
     shadowOpacity: 0.5,
@@ -94,12 +95,17 @@ const styles = StyleSheet.create({
     elevation: 1,
     width: 300, 
     padding: 10,
-    margin: 15
+    margin: 15,
+    border: 'black'
   },
-  options: {
+  optionsText: {
     color: '#33CC99',
     fontWeight: 'bold',
     fontSize: 16
+  },
+  optionsContainer: {
+    width: 300,
+    marginLeft: 20
   },
   button: {
     shadowColor: 'black',
