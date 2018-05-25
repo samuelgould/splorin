@@ -42,15 +42,17 @@ const initialState = {
     why: null,
     destinationImages: [
         {
-            source: {uri: 'https://i.imgur.com/Y6qMZTX.jpg'},
+            // source: {uri: 'https://i.imgur.com/Y6qMZTX.jpg'},
+            source: require('../destination-images/torres-del-paine-image.jpeg'),
             airport: 'PUQ',
-            description: 'Two mountain clusters in the background of a bright blue lake with a little house on an island with a bridge leading to it',
+            description: 'Two mountain clusters in the background of a bright blue lake with waves crashing on rocks',
             location: 'Patagonia, Chile',
             attraction: 'Torres Del Paine',
             why: 'Explore the breathe-taking views that inspired your favorite outdoor clothing brand.'
         },
         {
-            source: {uri: 'https://i.imgur.com/BXJ40.jpg'},
+            // source: {uri: 'https://i.imgur.com/BXJ40.jpg'},
+            source: require('../destination-images/hong-kong-hills-image.jpg'),
             airport: 'HKG',
             description: 'The lush, greeen Hong Kong Hills right next to the towering skyscrappers of Hong Kong lit up at night',
             location: 'Hong Kong',
@@ -58,7 +60,8 @@ const initialState = {
             why: 'Find skyscrappers in the midst of lush green hills in the city where nature and civilization live side by side.'
         },
         {
-            source: {uri: 'https://i.imgur.com/SAT57Cy.jpg'},
+            // source: {uri: 'https://i.imgur.com/SAT57Cy.jpg'},
+            source: require('../destination-images/lake-louise-image.jpg'),
             airport: 'YYC',
             description: 'The bright blue water of Lake Louise reflecting the surrounding snowcapped mountains',
             location: 'Banff National Park, Canada',
@@ -66,7 +69,8 @@ const initialState = {
             why: 'Enjoy the celestial blue waters of Lake Louise in the heart of the Canadian Rockies with glaciers only a short hike away.'
         },
         {
-            source: {uri: 'https://i.imgur.com/Iwgn9ly.jpg'},
+            // source: {uri: 'https://i.imgur.com/Iwgn9ly.jpg'},
+            source: require('../destination-images/ta-prohm-image.jpg'),
             airport: 'REP',
             description: 'The lush, greeen Hong Kong Hills right next to the towering skyscrappers of Hong Kong lit up at night',
             location: 'Siem Reap, Cambodia',
@@ -74,33 +78,37 @@ const initialState = {
             why: 'Revel in the remains of the Khmer Empire, exploring the ancient temples of Ankgor Wat, Ta Prohm, and Bayon.'
         },
         {
-            source: {uri: 'https://i.imgur.com/odnVEcd.jpg'},
+            // source: {uri: 'https://i.imgur.com/odnVEcd.jpg'},
+            source: require('../destination-images/san-francisco-image.jpg'),
             airport: 'SFO',
-            description: 'The view of the Golden Gate Bridge from Baker Beach during the sunrise',
+            description: 'The view of the Golden Gate Bridge covered in fog.',
             location: 'San Francisco, California',
             attraction: 'Golden Gate Bridge',
-            why: 'Get to know the hills of San Francisco and don\'t miss this stunning view of the Golden Gate Bridge from Baker Beach.'
+            why: 'Get to know the hills of San Francisco and be sure to check out the Golden Gate Bridge. Don\'t forget a sweatshirt though.'
         },
         {
-            source: {uri: 'https://i.imgur.com/K15QDrm.jpg'},
+            // source: {uri: 'https://i.imgur.com/K15QDrm.jpg'},
+            source: require('../destination-images/lanikai-beach-image.jpg'),
             airport: 'HNL',
-            description: 'Sunset on the North Shore of Oahu, HI',
+            description: 'Sunrise on Lanikai Beach of Oahu, HI',
             location: 'Oahu, Hawaii',
-            attraction: 'North Shore Beaches',
+            attraction: 'Lanikai Beach',
             why: 'Relax on the beach. Swim in the ocean. Explore the volcanoes. Just don\'t go inside them.'
         },
         {
-            source: {uri: 'https://i.imgur.com/F3nmZ6C.jpg'},
+            // source: {uri: 'https://i.imgur.com/F3nmZ6C.jpg'},
+            source: require('../destination-images/rocky-mountains-image.jpg'),
             airport: 'DEN',
-            description: 'A waterfall rushing through the mountainous terrain of the Rocky Mountains',
+            description: 'A river in the midst of the mountainous terrain of the Rocky Mountains',
             location: 'Rocky Mountains, Colorado',
-            attraction: 'Alberta Falls',
+            attraction: 'Bear Lake Trail',
             why: 'Get out on the continental divide and find hidden gems scattered throughout the Rocky Mountain National Park.'
         },
         {
-            source: {uri: 'https://i.imgur.com/1S60G9Y.jpg'},
+            // source: {uri: 'https://i.imgur.com/1S60G9Y.jpg'},
+            source: require('../destination-images/burj-khalifa-image.jpg'),
             airport: 'DXB',
-            description: 'The Burj Khalifa with fountains in the foreground with a sunset in the background',
+            description: 'The Burj Khalifa lit up at night in the heart of Dubai',
             location: 'Dubai, UAE',
             attraction: 'Burj Khalifa',
             why: 'Visit the Burj Khalifa, the tallest building in the world, in the midst of this rapidly growing city.'
