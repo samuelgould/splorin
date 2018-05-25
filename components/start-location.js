@@ -99,7 +99,8 @@ const styles = StyleSheet.create({
     elevation: 1,
     width: 300, 
     padding: 10,
-    margin: 15
+    margin: 15,
+    borderColor: '#DCDCDC'
   },
   optionsText: {
     color: '#33CC99',
@@ -113,7 +114,8 @@ const styles = StyleSheet.create({
     marginLeft: 14,
     marginTop: -26,
     paddingTop: 20,
-    borderWidth: 1
+    borderWidth: 1,
+    borderColor: '#DCDCDC'
   },
   button: {
     shadowColor: 'black',
