@@ -9,10 +9,10 @@
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "REACT_NATIVE_APP_API_KEY=50427ff7-0719-4c13-afc2-8f86f194e1f9 react-native-scripts start",
+    "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
-    "ios": "REACT_NATIVE_APP_API_KEY=50427ff7-0719-4c13-afc2-8f86f194e1f9 react-native-scripts ios",
+    "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js"
   },
   "jest": {
