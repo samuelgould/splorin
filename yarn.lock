@@ -1388,16 +1388,17 @@ auth0-js@^9.11.3:
     url-join "^4.0.1"
     winchan "^0.2.2"
 
-auth0@^2.20.0:
-  version "2.20.0"
-  resolved "https://registry.yarnpkg.com/auth0/-/auth0-2.20.0.tgz#abb250b4f70a3a845fa93115bbce3b1910f97897"
+auth0@^2.27.1:
+  version "2.27.1"
+  resolved "https://registry.yarnpkg.com/auth0/-/auth0-2.27.1.tgz#a9bcc766a4c89e12893092611c66d25f9313f6c9"
   dependencies:
+    axios "^0.19.2"
     bluebird "^3.5.5"
+    form-data "^3.0.0"
     jsonwebtoken "^8.5.1"
-    jwks-rsa "^1.6.0"
-    lru-memoizer "^2.0.1"
+    jwks-rsa "^1.8.0"
+    lru-memoizer "^2.1.0"
     object.assign "^4.1.0"
-    request "^2.88.0"
     rest-facade "^1.12.0"
     retry "^0.12.0"
 
@@ -1408,6 +1409,12 @@ aws-sign2@~0.7.0:
 aws4@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
+
+axios@^0.19.2:
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
+  dependencies:
+    follow-redirects "1.5.10"
 
 babel-jest@^24.7.1, babel-jest@^24.9.0:
   version "24.9.0"
@@ -1519,7 +1526,7 @@ babel-preset-jest@^24.9.0:
     "@babel/plugin-syntax-object-rest-spread" "^7.0.0"
     babel-plugin-jest-hoist "^24.9.0"
 
-babel-runtime@^6.22.0, babel-runtime@^6.9.2:
+babel-runtime@^6.22.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   dependencies:
@@ -1887,7 +1894,7 @@ color@~3.1.2:
     color-convert "^1.9.1"
     color-string "^1.5.2"
 
-combined-stream@^1.0.6, combined-stream@~1.0.6:
+combined-stream@^1.0.6, combined-stream@^1.0.8, combined-stream@~1.0.6:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/combined-stream/-/combined-stream-1.0.8.tgz#c3d45a8b34fd730631a110a8a2520682b31d5a7f"
   dependencies:
@@ -2064,13 +2071,13 @@ data-urls@^1.0.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
-debug@2, debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.9:
+debug@2, debug@2.6.9, debug@^2.2.0, debug@^2.3.3:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
   dependencies:
     ms "2.0.0"
 
-debug@3.1.0:
+debug@3.1.0, debug@=3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
   dependencies:
@@ -2722,6 +2729,12 @@ find-up@^3.0.0:
   dependencies:
     locate-path "^3.0.0"
 
+follow-redirects@1.5.10:
+  version "1.5.10"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
+  dependencies:
+    debug "=3.1.0"
+
 fontfaceobserver@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/fontfaceobserver/-/fontfaceobserver-2.1.0.tgz#e2705d293e2c585a6531c2a722905657317a2991"
@@ -2746,6 +2759,14 @@ form-data@^2.3.1:
   dependencies:
     asynckit "^0.4.0"
     combined-stream "^1.0.6"
+    mime-types "^2.1.12"
+
+form-data@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-3.0.0.tgz#31b7e39c85f1355b7139ee0c647cf0de7f83c682"
+  dependencies:
+    asynckit "^0.4.0"
+    combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
 form-data@~2.3.2:
@@ -3956,17 +3977,17 @@ jwa@^1.4.1:
     ecdsa-sig-formatter "1.0.11"
     safe-buffer "^5.0.1"
 
-jwks-rsa@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/jwks-rsa/-/jwks-rsa-1.6.0.tgz#d36356398a67619b237becfe8f2db2b66829b10f"
+jwks-rsa@^1.8.0:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/jwks-rsa/-/jwks-rsa-1.8.1.tgz#375c62a50c4ca805ad5bd682c12c8a695de13ddf"
   dependencies:
     "@types/express-jwt" "0.0.42"
-    debug "^2.6.9"
+    axios "^0.19.2"
+    debug "^4.1.0"
     jsonwebtoken "^8.5.1"
-    limiter "^1.1.4"
-    lru-memoizer "^1.12.0"
-    ms "^2.1.1"
-    request "^2.88.0"
+    limiter "^1.1.5"
+    lru-memoizer "^2.1.2"
+    ms "^2.1.2"
 
 jws@^3.2.2:
   version "3.2.2"
@@ -4030,9 +4051,9 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-limiter@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/limiter/-/limiter-1.1.4.tgz#87c9c3972d389fdb0ba67a45aadbc5d2f8413bc1"
+limiter@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/limiter/-/limiter-1.1.5.tgz#8f92a25b3b16c6131293a0cc834b4a838a2aa7c2"
 
 load-json-file@^2.0.0:
   version "2.0.0"
@@ -4065,10 +4086,6 @@ locate-path@^3.0.0:
   dependencies:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
-
-lock@~0.1.2:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/lock/-/lock-0.1.4.tgz#fec7deaef17e7c3a0a55e1da042803e25d91745d"
 
 lodash-es@^4.2.1:
   version "4.17.15"
@@ -4178,18 +4195,9 @@ lru-cache@~4.0.0:
     pseudomap "^1.0.1"
     yallist "^2.0.0"
 
-lru-memoizer@^1.12.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/lru-memoizer/-/lru-memoizer-1.13.0.tgz#1469529911602c13df43bca6730640b96072fac8"
-  dependencies:
-    lock "~0.1.2"
-    lodash "^4.17.4"
-    lru-cache "~4.0.0"
-    very-fast-args "^1.1.0"
-
-lru-memoizer@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/lru-memoizer/-/lru-memoizer-2.0.1.tgz#f21e015bb6856483f574070be11ca16b0c010693"
+lru-memoizer@^2.1.0, lru-memoizer@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/lru-memoizer/-/lru-memoizer-2.1.2.tgz#5c6b43659c78ad0e9e65bf81a9e5ef1ee109a2dd"
   dependencies:
     lodash.clonedeep "^4.5.0"
     lru-cache "~4.0.0"
@@ -4679,7 +4687,7 @@ ms@2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
 
-ms@^2.1.1:
+ms@^2.1.1, ms@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
 
@@ -5517,15 +5525,6 @@ react-native-keyboard-aware-scroll-view@0.9.1:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
-react-native-scripts@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-scripts/-/react-native-scripts-2.0.1.tgz#3c60353d5714816c486cb0f0b3b96f32d158dc00"
-  dependencies:
-    babel-runtime "^6.9.2"
-    chalk "^2.0.1"
-    cross-spawn "^5.0.1"
-    minimist "^1.2.0"
-
 react-native-swipe-cards@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/react-native-swipe-cards/-/react-native-swipe-cards-0.1.1.tgz#25a31b450f2616f3a25a101c9fc37ccbb2deb3e2"
@@ -5821,7 +5820,7 @@ request-promise-native@^1.0.5:
     stealthy-require "^1.1.1"
     tough-cookie "^2.3.3"
 
-request@^2.87.0, request@^2.88.0:
+request@^2.87.0:
   version "2.88.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.0.tgz#9c2fca4f7d35b592efe57c7f0a55e81052124fef"
   dependencies:
@@ -6787,10 +6786,6 @@ verror@1.10.0:
     assert-plus "^1.0.0"
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
-
-very-fast-args@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/very-fast-args/-/very-fast-args-1.1.0.tgz#e16d1d1faf8a6e596a246421fd90a77963d0b396"
 
 w3c-hr-time@^1.0.1:
   version "1.0.1"
